@@ -1,9 +1,8 @@
-name: rental_price_pipeline
+name: exercise_14
 
 entry_points:
   main:
     parameters:
-      steps:
-        type: str
-        default: "all"
-    command: python main.py main.execute_steps={steps}
+      hydra_options: {type: str, default: ""}
+    command: >
+      python main.py ${hydra_options}
