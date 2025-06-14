@@ -1,0 +1,14 @@
+artifact_uri: file:///workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/mlruns/0/a8b9d9e339e3401d80c03ba3aa01500c/artifacts
+end_time: 1749892115069
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: a8b9d9e339e3401d80c03ba3aa01500c
+run_name: grandiose-mule-218
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749892110494
+status: 3
+tags: []
+user_id: student

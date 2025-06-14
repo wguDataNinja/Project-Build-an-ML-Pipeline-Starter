@@ -1,0 +1,14 @@
+artifact_uri: file:///workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/mlruns/0/4b99301b731d4857b75e7d67f0e0f856/artifacts
+end_time: 1749930318785
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 4b99301b731d4857b75e7d67f0e0f856
+run_name: trusting-boar-715
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749930294859
+status: 4
+tags: []
+user_id: student

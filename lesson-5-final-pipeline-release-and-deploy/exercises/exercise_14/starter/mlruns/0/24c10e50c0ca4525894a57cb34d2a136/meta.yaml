@@ -1,0 +1,14 @@
+artifact_uri: file:///workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/mlruns/0/24c10e50c0ca4525894a57cb34d2a136/artifacts
+end_time: 1749893255973
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 24c10e50c0ca4525894a57cb34d2a136
+run_name: caring-colt-176
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749893249567
+status: 4
+tags: []
+user_id: student

@@ -1,0 +1,14 @@
+artifact_uri: file:///workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/mlruns/0/6a8bdff083334ac9971edc2b8789e85f/artifacts
+end_time: 1749925901581
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 6a8bdff083334ac9971edc2b8789e85f
+run_name: carefree-stag-342
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749925884445
+status: 4
+tags: []
+user_id: student

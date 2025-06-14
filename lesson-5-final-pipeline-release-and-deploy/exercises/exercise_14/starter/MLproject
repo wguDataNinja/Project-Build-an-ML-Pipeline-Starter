@@ -1,12 +1,9 @@
-name: download_data
-conda_env: conda.yml
+name: rental_price_pipeline
 
 entry_points:
   main:
     parameters:
-      hydra_options:
-        description: Hydra parameters to override
+      steps:
         type: str
-        default: ''
-    command: >-
-      python main.py $(echo {hydra_options})
+        default: "all"
+    command: python main.py main.execute_steps={steps}

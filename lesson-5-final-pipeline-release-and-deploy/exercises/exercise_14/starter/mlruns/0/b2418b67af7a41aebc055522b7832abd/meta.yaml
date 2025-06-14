@@ -1,0 +1,14 @@
+artifact_uri: file:///workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/mlruns/0/b2418b67af7a41aebc055522b7832abd/artifacts
+end_time: 1749893939971
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: b2418b67af7a41aebc055522b7832abd
+run_name: sincere-snipe-756
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749893927390
+status: 3
+tags: []
+user_id: student

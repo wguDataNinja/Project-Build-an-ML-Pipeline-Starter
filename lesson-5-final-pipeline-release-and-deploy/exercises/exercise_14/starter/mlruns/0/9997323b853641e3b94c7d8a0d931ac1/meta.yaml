@@ -1,0 +1,14 @@
+artifact_uri: file:///workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/mlruns/0/9997323b853641e3b94c7d8a0d931ac1/artifacts
+end_time: 1749893763724
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 9997323b853641e3b94c7d8a0d931ac1
+run_name: serious-shoat-934
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749893761254
+status: 4
+tags: []
+user_id: student

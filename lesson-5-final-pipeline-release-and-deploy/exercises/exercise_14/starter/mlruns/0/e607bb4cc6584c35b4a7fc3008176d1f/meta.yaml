@@ -1,0 +1,14 @@
+artifact_uri: file:///workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/mlruns/0/e607bb4cc6584c35b4a7fc3008176d1f/artifacts
+end_time: 1749930642572
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: e607bb4cc6584c35b4a7fc3008176d1f
+run_name: adorable-zebra-825
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749930614370
+status: 3
+tags: []
+user_id: student

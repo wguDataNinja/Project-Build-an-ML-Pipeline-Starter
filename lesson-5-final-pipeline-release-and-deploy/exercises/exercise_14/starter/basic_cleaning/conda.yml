@@ -1,0 +1,12 @@
+# starter/basic_cleaning/conda.yml
+name: basic_cleaning
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.8
+  - pip
+  - pip:
+      - wandb
+      - pandas
+      - pyarrow

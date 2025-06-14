@@ -1,0 +1,14 @@
+artifact_uri: file:///workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/mlruns/0/fe8056e140764836ad53c2afce30609a/artifacts
+end_time: 1749925769073
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: fe8056e140764836ad53c2afce30609a
+run_name: unruly-gnat-796
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749925754083
+status: 4
+tags: []
+user_id: student

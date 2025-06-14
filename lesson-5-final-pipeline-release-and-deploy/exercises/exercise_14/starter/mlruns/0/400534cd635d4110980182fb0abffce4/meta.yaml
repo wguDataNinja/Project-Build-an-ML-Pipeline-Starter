@@ -1,0 +1,14 @@
+artifact_uri: file:///workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/mlruns/0/400534cd635d4110980182fb0abffce4/artifacts
+end_time: 1749927404252
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 400534cd635d4110980182fb0abffce4
+run_name: rare-cub-68
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749927395983
+status: 3
+tags: []
+user_id: student

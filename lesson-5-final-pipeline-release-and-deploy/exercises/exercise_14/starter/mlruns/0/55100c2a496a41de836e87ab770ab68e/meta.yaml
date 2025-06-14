@@ -1,0 +1,14 @@
+artifact_uri: file:///workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/mlruns/0/55100c2a496a41de836e87ab770ab68e/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 55100c2a496a41de836e87ab770ab68e
+run_name: efficient-ray-634
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749925383568
+status: 1
+tags: []
+user_id: student

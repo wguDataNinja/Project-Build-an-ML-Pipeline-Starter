@@ -1,0 +1,702 @@
+[1m=================================================================================================== test session starts ====================================================================================================[0m
+platform linux -- Python 3.10.13, pytest-8.3.2, pluggy-1.5.0 -- /opt/venv/bin/python
+cachedir: .pytest_cache
+rootdir: /workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/check_data
+plugins: anyio-4.6.2.post1, hydra-core-1.3.2
+collected 4 items                                                                                                                                                                                                          [0m[1m
+
+test_data.py::test_column_presence_and_type [31mERROR[0m
+test_data.py::test_class_names [31mERROR[0m
+test_data.py::test_column_ranges [31mERROR[0m
+test_data.py::test_kolmogorov_smirnov [31mERROR[0m
+
+========================================================================================================== ERRORS ==========================================================================================================
+[31m[1m_____________________________________________________________________________________ ERROR at setup of test_column_presence_and_type ______________________________________________________________________________________[0m
+
+args = (<wandb.apis.public.api.Api object at 0x7a9773fe5570>,), kwargs = {'name': 'exercise_14/clean_data.parquet:reference', 'type': None}
+message = "artifact 'clean_data.parquet:reference' not found in 'owensbuddy-wgu/exercise_14'", payload = "artifact 'clean_data.parquet:reference' not found in 'owensbuddy-wgu/exercise_14'"
+
+    [0m[37m@wraps[39;49;00m(func)[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92mwrapper[39;49;00m(*args, **kwargs):[90m[39;49;00m
+        message = [33m"[39;49;00m[33mWhoa, you found a bug.[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+        [94mtry[39;49;00m:[90m[39;49;00m
+>           [94mreturn[39;49;00m func(*args, **kwargs)[90m[39;49;00m
+
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/apis/normalize.py[0m:25:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/apis/public/api.py[0m:1319: in _artifact
+    [0martifact = wandb.Artifact._from_name([90m[39;49;00m
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+cls = <class 'wandb.sdk.artifacts.artifact.Artifact'>
+
+    [0m[37m@classmethod[39;49;00m[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92m_from_name[39;49;00m([90m[39;49;00m
+        [96mcls[39;49;00m,[90m[39;49;00m
+        *,[90m[39;49;00m
+        entity: [96mstr[39;49;00m,[90m[39;49;00m
+        project: [96mstr[39;49;00m,[90m[39;49;00m
+        name: [96mstr[39;49;00m,[90m[39;49;00m
+        client: RetryingClient,[90m[39;49;00m
+        enable_tracking: [96mbool[39;49;00m = [94mFalse[39;49;00m,[90m[39;49;00m
+    ) -> Artifact:[90m[39;49;00m
+        server_supports_enabling_artifact_usage_tracking = ([90m[39;49;00m
+            InternalApi().server_project_type_introspection()[90m[39;49;00m
+        )[90m[39;49;00m
+        query_vars = [[33m"[39;49;00m[33m$entityName: String![39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33m$projectName: String![39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33m$name: String![39;49;00m[33m"[39;49;00m][90m[39;49;00m
+        query_args = [[33m"[39;49;00m[33mname: $name[39;49;00m[33m"[39;49;00m][90m[39;49;00m
+        [94mif[39;49;00m server_supports_enabling_artifact_usage_tracking:[90m[39;49;00m
+            query_vars.append([33m"[39;49;00m[33m$enableTracking: Boolean[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+            query_args.append([33m"[39;49;00m[33menableTracking: $enableTracking[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+        vars_str = [33m"[39;49;00m[33m, [39;49;00m[33m"[39;49;00m.join(query_vars)[90m[39;49;00m
+        args_str = [33m"[39;49;00m[33m, [39;49;00m[33m"[39;49;00m.join(query_args)[90m[39;49;00m
+    [90m[39;49;00m
+        query = gql([90m[39;49;00m
+            [33mf[39;49;00m[33m"""[39;49;00m[33m[39;49;00m
+    [33m        query ArtifactByName([39;49;00m[33m{[39;49;00mvars_str[33m}[39;49;00m[33m) [39;49;00m[33m{{[39;49;00m[33m[39;49;00m
+    [33m            project(name: $projectName, entityName: $entityName) [39;49;00m[33m{{[39;49;00m[33m[39;49;00m
+    [33m                artifact([39;49;00m[33m{[39;49;00margs_str[33m}[39;49;00m[33m) [39;49;00m[33m{{[39;49;00m[33m[39;49;00m
+    [33m                    ...ArtifactFragment[39;49;00m[33m[39;49;00m
+    [33m                [39;49;00m[33m}}[39;49;00m[33m[39;49;00m
+    [33m            [39;49;00m[33m}}[39;49;00m[33m[39;49;00m
+    [33m        [39;49;00m[33m}}[39;49;00m[33m[39;49;00m
+    [33m        [39;49;00m[33m{[39;49;00m_gql_artifact_fragment()[33m}[39;49;00m[33m[39;49;00m
+    [33m        [39;49;00m[33m"""[39;49;00m[90m[39;49;00m
+        )[90m[39;49;00m
+        query_variable_values: [96mdict[39;49;00m[[96mstr[39;49;00m, Any] = {[90m[39;49;00m
+            [33m"[39;49;00m[33mentityName[39;49;00m[33m"[39;49;00m: entity,[90m[39;49;00m
+            [33m"[39;49;00m[33mprojectName[39;49;00m[33m"[39;49;00m: project,[90m[39;49;00m
+            [33m"[39;49;00m[33mname[39;49;00m[33m"[39;49;00m: name,[90m[39;49;00m
+        }[90m[39;49;00m
+        [94mif[39;49;00m server_supports_enabling_artifact_usage_tracking:[90m[39;49;00m
+            query_variable_values[[33m"[39;49;00m[33menableTracking[39;49;00m[33m"[39;49;00m] = enable_tracking[90m[39;49;00m
+    [90m[39;49;00m
+        response = client.execute([90m[39;49;00m
+            query,[90m[39;49;00m
+            variable_values=query_variable_values,[90m[39;49;00m
+        )[90m[39;49;00m
+        project_attrs = response.get([33m"[39;49;00m[33mproject[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+        [94mif[39;49;00m [95mnot[39;49;00m project_attrs:[90m[39;49;00m
+            [94mraise[39;49;00m [96mValueError[39;49;00m([33mf[39;49;00m[33m"[39;49;00m[33mproject [39;49;00m[33m'[39;49;00m[33m{[39;49;00mproject[33m}[39;49;00m[33m'[39;49;00m[33m not found under entity [39;49;00m[33m'[39;49;00m[33m{[39;49;00mentity[33m}[39;49;00m[33m'[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+        attrs = project_attrs.get([33m"[39;49;00m[33martifact[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+        [94mif[39;49;00m [95mnot[39;49;00m attrs:[90m[39;49;00m
+>           [94mraise[39;49;00m [96mValueError[39;49;00m([33mf[39;49;00m[33m"[39;49;00m[33martifact [39;49;00m[33m'[39;49;00m[33m{[39;49;00mname[33m}[39;49;00m[33m'[39;49;00m[33m not found in [39;49;00m[33m'[39;49;00m[33m{[39;49;00mentity[33m}[39;49;00m[33m/[39;49;00m[33m{[39;49;00mproject[33m}[39;49;00m[33m'[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+[1m[31mE           ValueError: artifact 'clean_data.parquet:reference' not found in 'owensbuddy-wgu/exercise_14'[0m
+
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/artifacts/artifact.py[0m:331: ValueError
+
+[33mDuring handling of the above exception, another exception occurred:[0m
+
+request = <SubRequest 'data' for <Function test_column_presence_and_type>>
+
+    [0m[37m@pytest[39;49;00m.fixture(scope=[33m"[39;49;00m[33msession[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92mdata[39;49;00m(request):[90m[39;49;00m
+    [90m[39;49;00m
+        reference_artifact = request.config.option.reference_artifact[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m reference_artifact [95mis[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+            pytest.fail([33m"[39;49;00m[33m--reference_artifact missing on command line[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+        sample_artifact = request.config.option.sample_artifact[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m sample_artifact [95mis[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+            pytest.fail([33m"[39;49;00m[33m--sample_artifact missing on command line[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+>       local_path = run.use_artifact(reference_artifact).file()[90m[39;49;00m
+
+[1m[31mconftest.py[0m:28:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/wandb_run.py[0m:391: in wrapper
+    [0m[94mreturn[39;49;00m func([96mself[39;49;00m, *args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/wandb_run.py[0m:449: in wrapper_fn
+    [0m[94mreturn[39;49;00m func([96mself[39;49;00m, *args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/wandb_run.py[0m:436: in wrapper
+    [0m[94mreturn[39;49;00m func([96mself[39;49;00m, *args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/wandb_run.py[0m:3065: in use_artifact
+    [0martifact = public_api._artifact([96mtype[39;49;00m=[96mtype[39;49;00m, name=name)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/apis/normalize.py[0m:79: in wrapper
+    [0m[94mraise[39;49;00m CommError(message, err).with_traceback(sys.exc_info()[[94m2[39;49;00m])[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/apis/normalize.py[0m:25: in wrapper
+    [0m[94mreturn[39;49;00m func(*args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/apis/public/api.py[0m:1319: in _artifact
+    [0martifact = wandb.Artifact._from_name([90m[39;49;00m
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+cls = <class 'wandb.sdk.artifacts.artifact.Artifact'>
+
+    [0m[37m@classmethod[39;49;00m[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92m_from_name[39;49;00m([90m[39;49;00m
+        [96mcls[39;49;00m,[90m[39;49;00m
+        *,[90m[39;49;00m
+        entity: [96mstr[39;49;00m,[90m[39;49;00m
+        project: [96mstr[39;49;00m,[90m[39;49;00m
+        name: [96mstr[39;49;00m,[90m[39;49;00m
+        client: RetryingClient,[90m[39;49;00m
+        enable_tracking: [96mbool[39;49;00m = [94mFalse[39;49;00m,[90m[39;49;00m
+    ) -> Artifact:[90m[39;49;00m
+        server_supports_enabling_artifact_usage_tracking = ([90m[39;49;00m
+            InternalApi().server_project_type_introspection()[90m[39;49;00m
+        )[90m[39;49;00m
+        query_vars = [[33m"[39;49;00m[33m$entityName: String![39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33m$projectName: String![39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33m$name: String![39;49;00m[33m"[39;49;00m][90m[39;49;00m
+        query_args = [[33m"[39;49;00m[33mname: $name[39;49;00m[33m"[39;49;00m][90m[39;49;00m
+        [94mif[39;49;00m server_supports_enabling_artifact_usage_tracking:[90m[39;49;00m
+            query_vars.append([33m"[39;49;00m[33m$enableTracking: Boolean[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+            query_args.append([33m"[39;49;00m[33menableTracking: $enableTracking[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+        vars_str = [33m"[39;49;00m[33m, [39;49;00m[33m"[39;49;00m.join(query_vars)[90m[39;49;00m
+        args_str = [33m"[39;49;00m[33m, [39;49;00m[33m"[39;49;00m.join(query_args)[90m[39;49;00m
+    [90m[39;49;00m
+        query = gql([90m[39;49;00m
+            [33mf[39;49;00m[33m"""[39;49;00m[33m[39;49;00m
+    [33m        query ArtifactByName([39;49;00m[33m{[39;49;00mvars_str[33m}[39;49;00m[33m) [39;49;00m[33m{{[39;49;00m[33m[39;49;00m
+    [33m            project(name: $projectName, entityName: $entityName) [39;49;00m[33m{{[39;49;00m[33m[39;49;00m
+    [33m                artifact([39;49;00m[33m{[39;49;00margs_str[33m}[39;49;00m[33m) [39;49;00m[33m{{[39;49;00m[33m[39;49;00m
+    [33m                    ...ArtifactFragment[39;49;00m[33m[39;49;00m
+    [33m                [39;49;00m[33m}}[39;49;00m[33m[39;49;00m
+    [33m            [39;49;00m[33m}}[39;49;00m[33m[39;49;00m
+    [33m        [39;49;00m[33m}}[39;49;00m[33m[39;49;00m
+    [33m        [39;49;00m[33m{[39;49;00m_gql_artifact_fragment()[33m}[39;49;00m[33m[39;49;00m
+    [33m        [39;49;00m[33m"""[39;49;00m[90m[39;49;00m
+        )[90m[39;49;00m
+        query_variable_values: [96mdict[39;49;00m[[96mstr[39;49;00m, Any] = {[90m[39;49;00m
+            [33m"[39;49;00m[33mentityName[39;49;00m[33m"[39;49;00m: entity,[90m[39;49;00m
+            [33m"[39;49;00m[33mprojectName[39;49;00m[33m"[39;49;00m: project,[90m[39;49;00m
+            [33m"[39;49;00m[33mname[39;49;00m[33m"[39;49;00m: name,[90m[39;49;00m
+        }[90m[39;49;00m
+        [94mif[39;49;00m server_supports_enabling_artifact_usage_tracking:[90m[39;49;00m
+            query_variable_values[[33m"[39;49;00m[33menableTracking[39;49;00m[33m"[39;49;00m] = enable_tracking[90m[39;49;00m
+    [90m[39;49;00m
+        response = client.execute([90m[39;49;00m
+            query,[90m[39;49;00m
+            variable_values=query_variable_values,[90m[39;49;00m
+        )[90m[39;49;00m
+        project_attrs = response.get([33m"[39;49;00m[33mproject[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+        [94mif[39;49;00m [95mnot[39;49;00m project_attrs:[90m[39;49;00m
+            [94mraise[39;49;00m [96mValueError[39;49;00m([33mf[39;49;00m[33m"[39;49;00m[33mproject [39;49;00m[33m'[39;49;00m[33m{[39;49;00mproject[33m}[39;49;00m[33m'[39;49;00m[33m not found under entity [39;49;00m[33m'[39;49;00m[33m{[39;49;00mentity[33m}[39;49;00m[33m'[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+        attrs = project_attrs.get([33m"[39;49;00m[33martifact[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+        [94mif[39;49;00m [95mnot[39;49;00m attrs:[90m[39;49;00m
+>           [94mraise[39;49;00m [96mValueError[39;49;00m([33mf[39;49;00m[33m"[39;49;00m[33martifact [39;49;00m[33m'[39;49;00m[33m{[39;49;00mname[33m}[39;49;00m[33m'[39;49;00m[33m not found in [39;49;00m[33m'[39;49;00m[33m{[39;49;00mentity[33m}[39;49;00m[33m/[39;49;00m[33m{[39;49;00mproject[33m}[39;49;00m[33m'[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+[1m[31mE           wandb.errors.errors.CommError: artifact 'clean_data.parquet:reference' not found in 'owensbuddy-wgu/exercise_14'[0m
+
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/artifacts/artifact.py[0m:331: CommError
+[31m[1m____________________________________________________________________________________________ ERROR at setup of test_class_names ____________________________________________________________________________________________[0m
+
+args = (<wandb.apis.public.api.Api object at 0x7a9773fe5570>,), kwargs = {'name': 'exercise_14/clean_data.parquet:reference', 'type': None}
+message = "artifact 'clean_data.parquet:reference' not found in 'owensbuddy-wgu/exercise_14'", payload = "artifact 'clean_data.parquet:reference' not found in 'owensbuddy-wgu/exercise_14'"
+
+    [0m[37m@wraps[39;49;00m(func)[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92mwrapper[39;49;00m(*args, **kwargs):[90m[39;49;00m
+        message = [33m"[39;49;00m[33mWhoa, you found a bug.[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+        [94mtry[39;49;00m:[90m[39;49;00m
+>           [94mreturn[39;49;00m func(*args, **kwargs)[90m[39;49;00m
+
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/apis/normalize.py[0m:25:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/apis/public/api.py[0m:1319: in _artifact
+    [0martifact = wandb.Artifact._from_name([90m[39;49;00m
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+cls = <class 'wandb.sdk.artifacts.artifact.Artifact'>
+
+    [0m[37m@classmethod[39;49;00m[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92m_from_name[39;49;00m([90m[39;49;00m
+        [96mcls[39;49;00m,[90m[39;49;00m
+        *,[90m[39;49;00m
+        entity: [96mstr[39;49;00m,[90m[39;49;00m
+        project: [96mstr[39;49;00m,[90m[39;49;00m
+        name: [96mstr[39;49;00m,[90m[39;49;00m
+        client: RetryingClient,[90m[39;49;00m
+        enable_tracking: [96mbool[39;49;00m = [94mFalse[39;49;00m,[90m[39;49;00m
+    ) -> Artifact:[90m[39;49;00m
+        server_supports_enabling_artifact_usage_tracking = ([90m[39;49;00m
+            InternalApi().server_project_type_introspection()[90m[39;49;00m
+        )[90m[39;49;00m
+        query_vars = [[33m"[39;49;00m[33m$entityName: String![39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33m$projectName: String![39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33m$name: String![39;49;00m[33m"[39;49;00m][90m[39;49;00m
+        query_args = [[33m"[39;49;00m[33mname: $name[39;49;00m[33m"[39;49;00m][90m[39;49;00m
+        [94mif[39;49;00m server_supports_enabling_artifact_usage_tracking:[90m[39;49;00m
+            query_vars.append([33m"[39;49;00m[33m$enableTracking: Boolean[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+            query_args.append([33m"[39;49;00m[33menableTracking: $enableTracking[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+        vars_str = [33m"[39;49;00m[33m, [39;49;00m[33m"[39;49;00m.join(query_vars)[90m[39;49;00m
+        args_str = [33m"[39;49;00m[33m, [39;49;00m[33m"[39;49;00m.join(query_args)[90m[39;49;00m
+    [90m[39;49;00m
+        query = gql([90m[39;49;00m
+            [33mf[39;49;00m[33m"""[39;49;00m[33m[39;49;00m
+    [33m        query ArtifactByName([39;49;00m[33m{[39;49;00mvars_str[33m}[39;49;00m[33m) [39;49;00m[33m{{[39;49;00m[33m[39;49;00m
+    [33m            project(name: $projectName, entityName: $entityName) [39;49;00m[33m{{[39;49;00m[33m[39;49;00m
+    [33m                artifact([39;49;00m[33m{[39;49;00margs_str[33m}[39;49;00m[33m) [39;49;00m[33m{{[39;49;00m[33m[39;49;00m
+    [33m                    ...ArtifactFragment[39;49;00m[33m[39;49;00m
+    [33m                [39;49;00m[33m}}[39;49;00m[33m[39;49;00m
+    [33m            [39;49;00m[33m}}[39;49;00m[33m[39;49;00m
+    [33m        [39;49;00m[33m}}[39;49;00m[33m[39;49;00m
+    [33m        [39;49;00m[33m{[39;49;00m_gql_artifact_fragment()[33m}[39;49;00m[33m[39;49;00m
+    [33m        [39;49;00m[33m"""[39;49;00m[90m[39;49;00m
+        )[90m[39;49;00m
+        query_variable_values: [96mdict[39;49;00m[[96mstr[39;49;00m, Any] = {[90m[39;49;00m
+            [33m"[39;49;00m[33mentityName[39;49;00m[33m"[39;49;00m: entity,[90m[39;49;00m
+            [33m"[39;49;00m[33mprojectName[39;49;00m[33m"[39;49;00m: project,[90m[39;49;00m
+            [33m"[39;49;00m[33mname[39;49;00m[33m"[39;49;00m: name,[90m[39;49;00m
+        }[90m[39;49;00m
+        [94mif[39;49;00m server_supports_enabling_artifact_usage_tracking:[90m[39;49;00m
+            query_variable_values[[33m"[39;49;00m[33menableTracking[39;49;00m[33m"[39;49;00m] = enable_tracking[90m[39;49;00m
+    [90m[39;49;00m
+        response = client.execute([90m[39;49;00m
+            query,[90m[39;49;00m
+            variable_values=query_variable_values,[90m[39;49;00m
+        )[90m[39;49;00m
+        project_attrs = response.get([33m"[39;49;00m[33mproject[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+        [94mif[39;49;00m [95mnot[39;49;00m project_attrs:[90m[39;49;00m
+            [94mraise[39;49;00m [96mValueError[39;49;00m([33mf[39;49;00m[33m"[39;49;00m[33mproject [39;49;00m[33m'[39;49;00m[33m{[39;49;00mproject[33m}[39;49;00m[33m'[39;49;00m[33m not found under entity [39;49;00m[33m'[39;49;00m[33m{[39;49;00mentity[33m}[39;49;00m[33m'[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+        attrs = project_attrs.get([33m"[39;49;00m[33martifact[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+        [94mif[39;49;00m [95mnot[39;49;00m attrs:[90m[39;49;00m
+>           [94mraise[39;49;00m [96mValueError[39;49;00m([33mf[39;49;00m[33m"[39;49;00m[33martifact [39;49;00m[33m'[39;49;00m[33m{[39;49;00mname[33m}[39;49;00m[33m'[39;49;00m[33m not found in [39;49;00m[33m'[39;49;00m[33m{[39;49;00mentity[33m}[39;49;00m[33m/[39;49;00m[33m{[39;49;00mproject[33m}[39;49;00m[33m'[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+[1m[31mE           ValueError: artifact 'clean_data.parquet:reference' not found in 'owensbuddy-wgu/exercise_14'[0m
+
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/artifacts/artifact.py[0m:331: ValueError
+
+[33mDuring handling of the above exception, another exception occurred:[0m
+
+request = <SubRequest 'data' for <Function test_column_presence_and_type>>
+
+    [0m[37m@pytest[39;49;00m.fixture(scope=[33m"[39;49;00m[33msession[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92mdata[39;49;00m(request):[90m[39;49;00m
+    [90m[39;49;00m
+        reference_artifact = request.config.option.reference_artifact[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m reference_artifact [95mis[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+            pytest.fail([33m"[39;49;00m[33m--reference_artifact missing on command line[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+        sample_artifact = request.config.option.sample_artifact[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m sample_artifact [95mis[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+            pytest.fail([33m"[39;49;00m[33m--sample_artifact missing on command line[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+>       local_path = run.use_artifact(reference_artifact).file()[90m[39;49;00m
+
+[1m[31mconftest.py[0m:28:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/wandb_run.py[0m:391: in wrapper
+    [0m[94mreturn[39;49;00m func([96mself[39;49;00m, *args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/wandb_run.py[0m:449: in wrapper_fn
+    [0m[94mreturn[39;49;00m func([96mself[39;49;00m, *args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/wandb_run.py[0m:436: in wrapper
+    [0m[94mreturn[39;49;00m func([96mself[39;49;00m, *args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/wandb_run.py[0m:3065: in use_artifact
+    [0martifact = public_api._artifact([96mtype[39;49;00m=[96mtype[39;49;00m, name=name)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/apis/normalize.py[0m:79: in wrapper
+    [0m[94mraise[39;49;00m CommError(message, err).with_traceback(sys.exc_info()[[94m2[39;49;00m])[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/apis/normalize.py[0m:25: in wrapper
+    [0m[94mreturn[39;49;00m func(*args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/apis/public/api.py[0m:1319: in _artifact
+    [0martifact = wandb.Artifact._from_name([90m[39;49;00m
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+cls = <class 'wandb.sdk.artifacts.artifact.Artifact'>
+
+    [0m[37m@classmethod[39;49;00m[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92m_from_name[39;49;00m([90m[39;49;00m
+        [96mcls[39;49;00m,[90m[39;49;00m
+        *,[90m[39;49;00m
+        entity: [96mstr[39;49;00m,[90m[39;49;00m
+        project: [96mstr[39;49;00m,[90m[39;49;00m
+        name: [96mstr[39;49;00m,[90m[39;49;00m
+        client: RetryingClient,[90m[39;49;00m
+        enable_tracking: [96mbool[39;49;00m = [94mFalse[39;49;00m,[90m[39;49;00m
+    ) -> Artifact:[90m[39;49;00m
+        server_supports_enabling_artifact_usage_tracking = ([90m[39;49;00m
+            InternalApi().server_project_type_introspection()[90m[39;49;00m
+        )[90m[39;49;00m
+        query_vars = [[33m"[39;49;00m[33m$entityName: String![39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33m$projectName: String![39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33m$name: String![39;49;00m[33m"[39;49;00m][90m[39;49;00m
+        query_args = [[33m"[39;49;00m[33mname: $name[39;49;00m[33m"[39;49;00m][90m[39;49;00m
+        [94mif[39;49;00m server_supports_enabling_artifact_usage_tracking:[90m[39;49;00m
+            query_vars.append([33m"[39;49;00m[33m$enableTracking: Boolean[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+            query_args.append([33m"[39;49;00m[33menableTracking: $enableTracking[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+        vars_str = [33m"[39;49;00m[33m, [39;49;00m[33m"[39;49;00m.join(query_vars)[90m[39;49;00m
+        args_str = [33m"[39;49;00m[33m, [39;49;00m[33m"[39;49;00m.join(query_args)[90m[39;49;00m
+    [90m[39;49;00m
+        query = gql([90m[39;49;00m
+            [33mf[39;49;00m[33m"""[39;49;00m[33m[39;49;00m
+    [33m        query ArtifactByName([39;49;00m[33m{[39;49;00mvars_str[33m}[39;49;00m[33m) [39;49;00m[33m{{[39;49;00m[33m[39;49;00m
+    [33m            project(name: $projectName, entityName: $entityName) [39;49;00m[33m{{[39;49;00m[33m[39;49;00m
+    [33m                artifact([39;49;00m[33m{[39;49;00margs_str[33m}[39;49;00m[33m) [39;49;00m[33m{{[39;49;00m[33m[39;49;00m
+    [33m                    ...ArtifactFragment[39;49;00m[33m[39;49;00m
+    [33m                [39;49;00m[33m}}[39;49;00m[33m[39;49;00m
+    [33m            [39;49;00m[33m}}[39;49;00m[33m[39;49;00m
+    [33m        [39;49;00m[33m}}[39;49;00m[33m[39;49;00m
+    [33m        [39;49;00m[33m{[39;49;00m_gql_artifact_fragment()[33m}[39;49;00m[33m[39;49;00m
+    [33m        [39;49;00m[33m"""[39;49;00m[90m[39;49;00m
+        )[90m[39;49;00m
+        query_variable_values: [96mdict[39;49;00m[[96mstr[39;49;00m, Any] = {[90m[39;49;00m
+            [33m"[39;49;00m[33mentityName[39;49;00m[33m"[39;49;00m: entity,[90m[39;49;00m
+            [33m"[39;49;00m[33mprojectName[39;49;00m[33m"[39;49;00m: project,[90m[39;49;00m
+            [33m"[39;49;00m[33mname[39;49;00m[33m"[39;49;00m: name,[90m[39;49;00m
+        }[90m[39;49;00m
+        [94mif[39;49;00m server_supports_enabling_artifact_usage_tracking:[90m[39;49;00m
+            query_variable_values[[33m"[39;49;00m[33menableTracking[39;49;00m[33m"[39;49;00m] = enable_tracking[90m[39;49;00m
+    [90m[39;49;00m
+        response = client.execute([90m[39;49;00m
+            query,[90m[39;49;00m
+            variable_values=query_variable_values,[90m[39;49;00m
+        )[90m[39;49;00m
+        project_attrs = response.get([33m"[39;49;00m[33mproject[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+        [94mif[39;49;00m [95mnot[39;49;00m project_attrs:[90m[39;49;00m
+            [94mraise[39;49;00m [96mValueError[39;49;00m([33mf[39;49;00m[33m"[39;49;00m[33mproject [39;49;00m[33m'[39;49;00m[33m{[39;49;00mproject[33m}[39;49;00m[33m'[39;49;00m[33m not found under entity [39;49;00m[33m'[39;49;00m[33m{[39;49;00mentity[33m}[39;49;00m[33m'[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+        attrs = project_attrs.get([33m"[39;49;00m[33martifact[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+        [94mif[39;49;00m [95mnot[39;49;00m attrs:[90m[39;49;00m
+>           [94mraise[39;49;00m [96mValueError[39;49;00m([33mf[39;49;00m[33m"[39;49;00m[33martifact [39;49;00m[33m'[39;49;00m[33m{[39;49;00mname[33m}[39;49;00m[33m'[39;49;00m[33m not found in [39;49;00m[33m'[39;49;00m[33m{[39;49;00mentity[33m}[39;49;00m[33m/[39;49;00m[33m{[39;49;00mproject[33m}[39;49;00m[33m'[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+[1m[31mE           wandb.errors.errors.CommError: artifact 'clean_data.parquet:reference' not found in 'owensbuddy-wgu/exercise_14'[0m
+
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/artifacts/artifact.py[0m:331: CommError
+[31m[1m___________________________________________________________________________________________ ERROR at setup of test_column_ranges ___________________________________________________________________________________________[0m
+
+args = (<wandb.apis.public.api.Api object at 0x7a9773fe5570>,), kwargs = {'name': 'exercise_14/clean_data.parquet:reference', 'type': None}
+message = "artifact 'clean_data.parquet:reference' not found in 'owensbuddy-wgu/exercise_14'", payload = "artifact 'clean_data.parquet:reference' not found in 'owensbuddy-wgu/exercise_14'"
+
+    [0m[37m@wraps[39;49;00m(func)[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92mwrapper[39;49;00m(*args, **kwargs):[90m[39;49;00m
+        message = [33m"[39;49;00m[33mWhoa, you found a bug.[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+        [94mtry[39;49;00m:[90m[39;49;00m
+>           [94mreturn[39;49;00m func(*args, **kwargs)[90m[39;49;00m
+
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/apis/normalize.py[0m:25:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/apis/public/api.py[0m:1319: in _artifact
+    [0martifact = wandb.Artifact._from_name([90m[39;49;00m
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+cls = <class 'wandb.sdk.artifacts.artifact.Artifact'>
+
+    [0m[37m@classmethod[39;49;00m[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92m_from_name[39;49;00m([90m[39;49;00m
+        [96mcls[39;49;00m,[90m[39;49;00m
+        *,[90m[39;49;00m
+        entity: [96mstr[39;49;00m,[90m[39;49;00m
+        project: [96mstr[39;49;00m,[90m[39;49;00m
+        name: [96mstr[39;49;00m,[90m[39;49;00m
+        client: RetryingClient,[90m[39;49;00m
+        enable_tracking: [96mbool[39;49;00m = [94mFalse[39;49;00m,[90m[39;49;00m
+    ) -> Artifact:[90m[39;49;00m
+        server_supports_enabling_artifact_usage_tracking = ([90m[39;49;00m
+            InternalApi().server_project_type_introspection()[90m[39;49;00m
+        )[90m[39;49;00m
+        query_vars = [[33m"[39;49;00m[33m$entityName: String![39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33m$projectName: String![39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33m$name: String![39;49;00m[33m"[39;49;00m][90m[39;49;00m
+        query_args = [[33m"[39;49;00m[33mname: $name[39;49;00m[33m"[39;49;00m][90m[39;49;00m
+        [94mif[39;49;00m server_supports_enabling_artifact_usage_tracking:[90m[39;49;00m
+            query_vars.append([33m"[39;49;00m[33m$enableTracking: Boolean[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+            query_args.append([33m"[39;49;00m[33menableTracking: $enableTracking[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+        vars_str = [33m"[39;49;00m[33m, [39;49;00m[33m"[39;49;00m.join(query_vars)[90m[39;49;00m
+        args_str = [33m"[39;49;00m[33m, [39;49;00m[33m"[39;49;00m.join(query_args)[90m[39;49;00m
+    [90m[39;49;00m
+        query = gql([90m[39;49;00m
+            [33mf[39;49;00m[33m"""[39;49;00m[33m[39;49;00m
+    [33m        query ArtifactByName([39;49;00m[33m{[39;49;00mvars_str[33m}[39;49;00m[33m) [39;49;00m[33m{{[39;49;00m[33m[39;49;00m
+    [33m            project(name: $projectName, entityName: $entityName) [39;49;00m[33m{{[39;49;00m[33m[39;49;00m
+    [33m                artifact([39;49;00m[33m{[39;49;00margs_str[33m}[39;49;00m[33m) [39;49;00m[33m{{[39;49;00m[33m[39;49;00m
+    [33m                    ...ArtifactFragment[39;49;00m[33m[39;49;00m
+    [33m                [39;49;00m[33m}}[39;49;00m[33m[39;49;00m
+    [33m            [39;49;00m[33m}}[39;49;00m[33m[39;49;00m
+    [33m        [39;49;00m[33m}}[39;49;00m[33m[39;49;00m
+    [33m        [39;49;00m[33m{[39;49;00m_gql_artifact_fragment()[33m}[39;49;00m[33m[39;49;00m
+    [33m        [39;49;00m[33m"""[39;49;00m[90m[39;49;00m
+        )[90m[39;49;00m
+        query_variable_values: [96mdict[39;49;00m[[96mstr[39;49;00m, Any] = {[90m[39;49;00m
+            [33m"[39;49;00m[33mentityName[39;49;00m[33m"[39;49;00m: entity,[90m[39;49;00m
+            [33m"[39;49;00m[33mprojectName[39;49;00m[33m"[39;49;00m: project,[90m[39;49;00m
+            [33m"[39;49;00m[33mname[39;49;00m[33m"[39;49;00m: name,[90m[39;49;00m
+        }[90m[39;49;00m
+        [94mif[39;49;00m server_supports_enabling_artifact_usage_tracking:[90m[39;49;00m
+            query_variable_values[[33m"[39;49;00m[33menableTracking[39;49;00m[33m"[39;49;00m] = enable_tracking[90m[39;49;00m
+    [90m[39;49;00m
+        response = client.execute([90m[39;49;00m
+            query,[90m[39;49;00m
+            variable_values=query_variable_values,[90m[39;49;00m
+        )[90m[39;49;00m
+        project_attrs = response.get([33m"[39;49;00m[33mproject[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+        [94mif[39;49;00m [95mnot[39;49;00m project_attrs:[90m[39;49;00m
+            [94mraise[39;49;00m [96mValueError[39;49;00m([33mf[39;49;00m[33m"[39;49;00m[33mproject [39;49;00m[33m'[39;49;00m[33m{[39;49;00mproject[33m}[39;49;00m[33m'[39;49;00m[33m not found under entity [39;49;00m[33m'[39;49;00m[33m{[39;49;00mentity[33m}[39;49;00m[33m'[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+        attrs = project_attrs.get([33m"[39;49;00m[33martifact[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+        [94mif[39;49;00m [95mnot[39;49;00m attrs:[90m[39;49;00m
+>           [94mraise[39;49;00m [96mValueError[39;49;00m([33mf[39;49;00m[33m"[39;49;00m[33martifact [39;49;00m[33m'[39;49;00m[33m{[39;49;00mname[33m}[39;49;00m[33m'[39;49;00m[33m not found in [39;49;00m[33m'[39;49;00m[33m{[39;49;00mentity[33m}[39;49;00m[33m/[39;49;00m[33m{[39;49;00mproject[33m}[39;49;00m[33m'[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+[1m[31mE           ValueError: artifact 'clean_data.parquet:reference' not found in 'owensbuddy-wgu/exercise_14'[0m
+
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/artifacts/artifact.py[0m:331: ValueError
+
+[33mDuring handling of the above exception, another exception occurred:[0m
+
+request = <SubRequest 'data' for <Function test_column_presence_and_type>>
+
+    [0m[37m@pytest[39;49;00m.fixture(scope=[33m"[39;49;00m[33msession[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92mdata[39;49;00m(request):[90m[39;49;00m
+    [90m[39;49;00m
+        reference_artifact = request.config.option.reference_artifact[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m reference_artifact [95mis[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+            pytest.fail([33m"[39;49;00m[33m--reference_artifact missing on command line[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+        sample_artifact = request.config.option.sample_artifact[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m sample_artifact [95mis[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+            pytest.fail([33m"[39;49;00m[33m--sample_artifact missing on command line[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+>       local_path = run.use_artifact(reference_artifact).file()[90m[39;49;00m
+
+[1m[31mconftest.py[0m:28:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/wandb_run.py[0m:391: in wrapper
+    [0m[94mreturn[39;49;00m func([96mself[39;49;00m, *args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/wandb_run.py[0m:449: in wrapper_fn
+    [0m[94mreturn[39;49;00m func([96mself[39;49;00m, *args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/wandb_run.py[0m:436: in wrapper
+    [0m[94mreturn[39;49;00m func([96mself[39;49;00m, *args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/wandb_run.py[0m:3065: in use_artifact
+    [0martifact = public_api._artifact([96mtype[39;49;00m=[96mtype[39;49;00m, name=name)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/apis/normalize.py[0m:79: in wrapper
+    [0m[94mraise[39;49;00m CommError(message, err).with_traceback(sys.exc_info()[[94m2[39;49;00m])[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/apis/normalize.py[0m:25: in wrapper
+    [0m[94mreturn[39;49;00m func(*args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/apis/public/api.py[0m:1319: in _artifact
+    [0martifact = wandb.Artifact._from_name([90m[39;49;00m
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+cls = <class 'wandb.sdk.artifacts.artifact.Artifact'>
+
+    [0m[37m@classmethod[39;49;00m[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92m_from_name[39;49;00m([90m[39;49;00m
+        [96mcls[39;49;00m,[90m[39;49;00m
+        *,[90m[39;49;00m
+        entity: [96mstr[39;49;00m,[90m[39;49;00m
+        project: [96mstr[39;49;00m,[90m[39;49;00m
+        name: [96mstr[39;49;00m,[90m[39;49;00m
+        client: RetryingClient,[90m[39;49;00m
+        enable_tracking: [96mbool[39;49;00m = [94mFalse[39;49;00m,[90m[39;49;00m
+    ) -> Artifact:[90m[39;49;00m
+        server_supports_enabling_artifact_usage_tracking = ([90m[39;49;00m
+            InternalApi().server_project_type_introspection()[90m[39;49;00m
+        )[90m[39;49;00m
+        query_vars = [[33m"[39;49;00m[33m$entityName: String![39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33m$projectName: String![39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33m$name: String![39;49;00m[33m"[39;49;00m][90m[39;49;00m
+        query_args = [[33m"[39;49;00m[33mname: $name[39;49;00m[33m"[39;49;00m][90m[39;49;00m
+        [94mif[39;49;00m server_supports_enabling_artifact_usage_tracking:[90m[39;49;00m
+            query_vars.append([33m"[39;49;00m[33m$enableTracking: Boolean[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+            query_args.append([33m"[39;49;00m[33menableTracking: $enableTracking[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+        vars_str = [33m"[39;49;00m[33m, [39;49;00m[33m"[39;49;00m.join(query_vars)[90m[39;49;00m
+        args_str = [33m"[39;49;00m[33m, [39;49;00m[33m"[39;49;00m.join(query_args)[90m[39;49;00m
+    [90m[39;49;00m
+        query = gql([90m[39;49;00m
+            [33mf[39;49;00m[33m"""[39;49;00m[33m[39;49;00m
+    [33m        query ArtifactByName([39;49;00m[33m{[39;49;00mvars_str[33m}[39;49;00m[33m) [39;49;00m[33m{{[39;49;00m[33m[39;49;00m
+    [33m            project(name: $projectName, entityName: $entityName) [39;49;00m[33m{{[39;49;00m[33m[39;49;00m
+    [33m                artifact([39;49;00m[33m{[39;49;00margs_str[33m}[39;49;00m[33m) [39;49;00m[33m{{[39;49;00m[33m[39;49;00m
+    [33m                    ...ArtifactFragment[39;49;00m[33m[39;49;00m
+    [33m                [39;49;00m[33m}}[39;49;00m[33m[39;49;00m
+    [33m            [39;49;00m[33m}}[39;49;00m[33m[39;49;00m
+    [33m        [39;49;00m[33m}}[39;49;00m[33m[39;49;00m
+    [33m        [39;49;00m[33m{[39;49;00m_gql_artifact_fragment()[33m}[39;49;00m[33m[39;49;00m
+    [33m        [39;49;00m[33m"""[39;49;00m[90m[39;49;00m
+        )[90m[39;49;00m
+        query_variable_values: [96mdict[39;49;00m[[96mstr[39;49;00m, Any] = {[90m[39;49;00m
+            [33m"[39;49;00m[33mentityName[39;49;00m[33m"[39;49;00m: entity,[90m[39;49;00m
+            [33m"[39;49;00m[33mprojectName[39;49;00m[33m"[39;49;00m: project,[90m[39;49;00m
+            [33m"[39;49;00m[33mname[39;49;00m[33m"[39;49;00m: name,[90m[39;49;00m
+        }[90m[39;49;00m
+        [94mif[39;49;00m server_supports_enabling_artifact_usage_tracking:[90m[39;49;00m
+            query_variable_values[[33m"[39;49;00m[33menableTracking[39;49;00m[33m"[39;49;00m] = enable_tracking[90m[39;49;00m
+    [90m[39;49;00m
+        response = client.execute([90m[39;49;00m
+            query,[90m[39;49;00m
+            variable_values=query_variable_values,[90m[39;49;00m
+        )[90m[39;49;00m
+        project_attrs = response.get([33m"[39;49;00m[33mproject[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+        [94mif[39;49;00m [95mnot[39;49;00m project_attrs:[90m[39;49;00m
+            [94mraise[39;49;00m [96mValueError[39;49;00m([33mf[39;49;00m[33m"[39;49;00m[33mproject [39;49;00m[33m'[39;49;00m[33m{[39;49;00mproject[33m}[39;49;00m[33m'[39;49;00m[33m not found under entity [39;49;00m[33m'[39;49;00m[33m{[39;49;00mentity[33m}[39;49;00m[33m'[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+        attrs = project_attrs.get([33m"[39;49;00m[33martifact[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+        [94mif[39;49;00m [95mnot[39;49;00m attrs:[90m[39;49;00m
+>           [94mraise[39;49;00m [96mValueError[39;49;00m([33mf[39;49;00m[33m"[39;49;00m[33martifact [39;49;00m[33m'[39;49;00m[33m{[39;49;00mname[33m}[39;49;00m[33m'[39;49;00m[33m not found in [39;49;00m[33m'[39;49;00m[33m{[39;49;00mentity[33m}[39;49;00m[33m/[39;49;00m[33m{[39;49;00mproject[33m}[39;49;00m[33m'[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+[1m[31mE           wandb.errors.errors.CommError: artifact 'clean_data.parquet:reference' not found in 'owensbuddy-wgu/exercise_14'[0m
+
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/artifacts/artifact.py[0m:331: CommError
+[31m[1m________________________________________________________________________________________ ERROR at setup of test_kolmogorov_smirnov _________________________________________________________________________________________[0m
+
+args = (<wandb.apis.public.api.Api object at 0x7a9773fe5570>,), kwargs = {'name': 'exercise_14/clean_data.parquet:reference', 'type': None}
+message = "artifact 'clean_data.parquet:reference' not found in 'owensbuddy-wgu/exercise_14'", payload = "artifact 'clean_data.parquet:reference' not found in 'owensbuddy-wgu/exercise_14'"
+
+    [0m[37m@wraps[39;49;00m(func)[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92mwrapper[39;49;00m(*args, **kwargs):[90m[39;49;00m
+        message = [33m"[39;49;00m[33mWhoa, you found a bug.[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+        [94mtry[39;49;00m:[90m[39;49;00m
+>           [94mreturn[39;49;00m func(*args, **kwargs)[90m[39;49;00m
+
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/apis/normalize.py[0m:25:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/apis/public/api.py[0m:1319: in _artifact
+    [0martifact = wandb.Artifact._from_name([90m[39;49;00m
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+cls = <class 'wandb.sdk.artifacts.artifact.Artifact'>
+
+    [0m[37m@classmethod[39;49;00m[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92m_from_name[39;49;00m([90m[39;49;00m
+        [96mcls[39;49;00m,[90m[39;49;00m
+        *,[90m[39;49;00m
+        entity: [96mstr[39;49;00m,[90m[39;49;00m
+        project: [96mstr[39;49;00m,[90m[39;49;00m
+        name: [96mstr[39;49;00m,[90m[39;49;00m
+        client: RetryingClient,[90m[39;49;00m
+        enable_tracking: [96mbool[39;49;00m = [94mFalse[39;49;00m,[90m[39;49;00m
+    ) -> Artifact:[90m[39;49;00m
+        server_supports_enabling_artifact_usage_tracking = ([90m[39;49;00m
+            InternalApi().server_project_type_introspection()[90m[39;49;00m
+        )[90m[39;49;00m
+        query_vars = [[33m"[39;49;00m[33m$entityName: String![39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33m$projectName: String![39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33m$name: String![39;49;00m[33m"[39;49;00m][90m[39;49;00m
+        query_args = [[33m"[39;49;00m[33mname: $name[39;49;00m[33m"[39;49;00m][90m[39;49;00m
+        [94mif[39;49;00m server_supports_enabling_artifact_usage_tracking:[90m[39;49;00m
+            query_vars.append([33m"[39;49;00m[33m$enableTracking: Boolean[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+            query_args.append([33m"[39;49;00m[33menableTracking: $enableTracking[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+        vars_str = [33m"[39;49;00m[33m, [39;49;00m[33m"[39;49;00m.join(query_vars)[90m[39;49;00m
+        args_str = [33m"[39;49;00m[33m, [39;49;00m[33m"[39;49;00m.join(query_args)[90m[39;49;00m
+    [90m[39;49;00m
+        query = gql([90m[39;49;00m
+            [33mf[39;49;00m[33m"""[39;49;00m[33m[39;49;00m
+    [33m        query ArtifactByName([39;49;00m[33m{[39;49;00mvars_str[33m}[39;49;00m[33m) [39;49;00m[33m{{[39;49;00m[33m[39;49;00m
+    [33m            project(name: $projectName, entityName: $entityName) [39;49;00m[33m{{[39;49;00m[33m[39;49;00m
+    [33m                artifact([39;49;00m[33m{[39;49;00margs_str[33m}[39;49;00m[33m) [39;49;00m[33m{{[39;49;00m[33m[39;49;00m
+    [33m                    ...ArtifactFragment[39;49;00m[33m[39;49;00m
+    [33m                [39;49;00m[33m}}[39;49;00m[33m[39;49;00m
+    [33m            [39;49;00m[33m}}[39;49;00m[33m[39;49;00m
+    [33m        [39;49;00m[33m}}[39;49;00m[33m[39;49;00m
+    [33m        [39;49;00m[33m{[39;49;00m_gql_artifact_fragment()[33m}[39;49;00m[33m[39;49;00m
+    [33m        [39;49;00m[33m"""[39;49;00m[90m[39;49;00m
+        )[90m[39;49;00m
+        query_variable_values: [96mdict[39;49;00m[[96mstr[39;49;00m, Any] = {[90m[39;49;00m
+            [33m"[39;49;00m[33mentityName[39;49;00m[33m"[39;49;00m: entity,[90m[39;49;00m
+            [33m"[39;49;00m[33mprojectName[39;49;00m[33m"[39;49;00m: project,[90m[39;49;00m
+            [33m"[39;49;00m[33mname[39;49;00m[33m"[39;49;00m: name,[90m[39;49;00m
+        }[90m[39;49;00m
+        [94mif[39;49;00m server_supports_enabling_artifact_usage_tracking:[90m[39;49;00m
+            query_variable_values[[33m"[39;49;00m[33menableTracking[39;49;00m[33m"[39;49;00m] = enable_tracking[90m[39;49;00m
+    [90m[39;49;00m
+        response = client.execute([90m[39;49;00m
+            query,[90m[39;49;00m
+            variable_values=query_variable_values,[90m[39;49;00m
+        )[90m[39;49;00m
+        project_attrs = response.get([33m"[39;49;00m[33mproject[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+        [94mif[39;49;00m [95mnot[39;49;00m project_attrs:[90m[39;49;00m
+            [94mraise[39;49;00m [96mValueError[39;49;00m([33mf[39;49;00m[33m"[39;49;00m[33mproject [39;49;00m[33m'[39;49;00m[33m{[39;49;00mproject[33m}[39;49;00m[33m'[39;49;00m[33m not found under entity [39;49;00m[33m'[39;49;00m[33m{[39;49;00mentity[33m}[39;49;00m[33m'[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+        attrs = project_attrs.get([33m"[39;49;00m[33martifact[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+        [94mif[39;49;00m [95mnot[39;49;00m attrs:[90m[39;49;00m
+>           [94mraise[39;49;00m [96mValueError[39;49;00m([33mf[39;49;00m[33m"[39;49;00m[33martifact [39;49;00m[33m'[39;49;00m[33m{[39;49;00mname[33m}[39;49;00m[33m'[39;49;00m[33m not found in [39;49;00m[33m'[39;49;00m[33m{[39;49;00mentity[33m}[39;49;00m[33m/[39;49;00m[33m{[39;49;00mproject[33m}[39;49;00m[33m'[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+[1m[31mE           ValueError: artifact 'clean_data.parquet:reference' not found in 'owensbuddy-wgu/exercise_14'[0m
+
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/artifacts/artifact.py[0m:331: ValueError
+
+[33mDuring handling of the above exception, another exception occurred:[0m
+
+request = <SubRequest 'data' for <Function test_column_presence_and_type>>
+
+    [0m[37m@pytest[39;49;00m.fixture(scope=[33m"[39;49;00m[33msession[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92mdata[39;49;00m(request):[90m[39;49;00m
+    [90m[39;49;00m
+        reference_artifact = request.config.option.reference_artifact[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m reference_artifact [95mis[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+            pytest.fail([33m"[39;49;00m[33m--reference_artifact missing on command line[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+        sample_artifact = request.config.option.sample_artifact[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m sample_artifact [95mis[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+            pytest.fail([33m"[39;49;00m[33m--sample_artifact missing on command line[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+>       local_path = run.use_artifact(reference_artifact).file()[90m[39;49;00m
+
+[1m[31mconftest.py[0m:28:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/wandb_run.py[0m:391: in wrapper
+    [0m[94mreturn[39;49;00m func([96mself[39;49;00m, *args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/wandb_run.py[0m:449: in wrapper_fn
+    [0m[94mreturn[39;49;00m func([96mself[39;49;00m, *args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/wandb_run.py[0m:436: in wrapper
+    [0m[94mreturn[39;49;00m func([96mself[39;49;00m, *args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/wandb_run.py[0m:3065: in use_artifact
+    [0martifact = public_api._artifact([96mtype[39;49;00m=[96mtype[39;49;00m, name=name)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/apis/normalize.py[0m:79: in wrapper
+    [0m[94mraise[39;49;00m CommError(message, err).with_traceback(sys.exc_info()[[94m2[39;49;00m])[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/apis/normalize.py[0m:25: in wrapper
+    [0m[94mreturn[39;49;00m func(*args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/apis/public/api.py[0m:1319: in _artifact
+    [0martifact = wandb.Artifact._from_name([90m[39;49;00m
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+cls = <class 'wandb.sdk.artifacts.artifact.Artifact'>
+
+    [0m[37m@classmethod[39;49;00m[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92m_from_name[39;49;00m([90m[39;49;00m
+        [96mcls[39;49;00m,[90m[39;49;00m
+        *,[90m[39;49;00m
+        entity: [96mstr[39;49;00m,[90m[39;49;00m
+        project: [96mstr[39;49;00m,[90m[39;49;00m
+        name: [96mstr[39;49;00m,[90m[39;49;00m
+        client: RetryingClient,[90m[39;49;00m
+        enable_tracking: [96mbool[39;49;00m = [94mFalse[39;49;00m,[90m[39;49;00m
+    ) -> Artifact:[90m[39;49;00m
+        server_supports_enabling_artifact_usage_tracking = ([90m[39;49;00m
+            InternalApi().server_project_type_introspection()[90m[39;49;00m
+        )[90m[39;49;00m
+        query_vars = [[33m"[39;49;00m[33m$entityName: String![39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33m$projectName: String![39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33m$name: String![39;49;00m[33m"[39;49;00m][90m[39;49;00m
+        query_args = [[33m"[39;49;00m[33mname: $name[39;49;00m[33m"[39;49;00m][90m[39;49;00m
+        [94mif[39;49;00m server_supports_enabling_artifact_usage_tracking:[90m[39;49;00m
+            query_vars.append([33m"[39;49;00m[33m$enableTracking: Boolean[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+            query_args.append([33m"[39;49;00m[33menableTracking: $enableTracking[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+        vars_str = [33m"[39;49;00m[33m, [39;49;00m[33m"[39;49;00m.join(query_vars)[90m[39;49;00m
+        args_str = [33m"[39;49;00m[33m, [39;49;00m[33m"[39;49;00m.join(query_args)[90m[39;49;00m
+    [90m[39;49;00m
+        query = gql([90m[39;49;00m
+            [33mf[39;49;00m[33m"""[39;49;00m[33m[39;49;00m
+    [33m        query ArtifactByName([39;49;00m[33m{[39;49;00mvars_str[33m}[39;49;00m[33m) [39;49;00m[33m{{[39;49;00m[33m[39;49;00m
+    [33m            project(name: $projectName, entityName: $entityName) [39;49;00m[33m{{[39;49;00m[33m[39;49;00m
+    [33m                artifact([39;49;00m[33m{[39;49;00margs_str[33m}[39;49;00m[33m) [39;49;00m[33m{{[39;49;00m[33m[39;49;00m
+    [33m                    ...ArtifactFragment[39;49;00m[33m[39;49;00m
+    [33m                [39;49;00m[33m}}[39;49;00m[33m[39;49;00m
+    [33m            [39;49;00m[33m}}[39;49;00m[33m[39;49;00m
+    [33m        [39;49;00m[33m}}[39;49;00m[33m[39;49;00m
+    [33m        [39;49;00m[33m{[39;49;00m_gql_artifact_fragment()[33m}[39;49;00m[33m[39;49;00m
+    [33m        [39;49;00m[33m"""[39;49;00m[90m[39;49;00m
+        )[90m[39;49;00m
+        query_variable_values: [96mdict[39;49;00m[[96mstr[39;49;00m, Any] = {[90m[39;49;00m
+            [33m"[39;49;00m[33mentityName[39;49;00m[33m"[39;49;00m: entity,[90m[39;49;00m
+            [33m"[39;49;00m[33mprojectName[39;49;00m[33m"[39;49;00m: project,[90m[39;49;00m
+            [33m"[39;49;00m[33mname[39;49;00m[33m"[39;49;00m: name,[90m[39;49;00m
+        }[90m[39;49;00m
+        [94mif[39;49;00m server_supports_enabling_artifact_usage_tracking:[90m[39;49;00m
+            query_variable_values[[33m"[39;49;00m[33menableTracking[39;49;00m[33m"[39;49;00m] = enable_tracking[90m[39;49;00m
+    [90m[39;49;00m
+        response = client.execute([90m[39;49;00m
+            query,[90m[39;49;00m
+            variable_values=query_variable_values,[90m[39;49;00m
+        )[90m[39;49;00m
+        project_attrs = response.get([33m"[39;49;00m[33mproject[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+        [94mif[39;49;00m [95mnot[39;49;00m project_attrs:[90m[39;49;00m
+            [94mraise[39;49;00m [96mValueError[39;49;00m([33mf[39;49;00m[33m"[39;49;00m[33mproject [39;49;00m[33m'[39;49;00m[33m{[39;49;00mproject[33m}[39;49;00m[33m'[39;49;00m[33m not found under entity [39;49;00m[33m'[39;49;00m[33m{[39;49;00mentity[33m}[39;49;00m[33m'[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+        attrs = project_attrs.get([33m"[39;49;00m[33martifact[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+        [94mif[39;49;00m [95mnot[39;49;00m attrs:[90m[39;49;00m
+>           [94mraise[39;49;00m [96mValueError[39;49;00m([33mf[39;49;00m[33m"[39;49;00m[33martifact [39;49;00m[33m'[39;49;00m[33m{[39;49;00mname[33m}[39;49;00m[33m'[39;49;00m[33m not found in [39;49;00m[33m'[39;49;00m[33m{[39;49;00mentity[33m}[39;49;00m[33m/[39;49;00m[33m{[39;49;00mproject[33m}[39;49;00m[33m'[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+[1m[31mE           wandb.errors.errors.CommError: artifact 'clean_data.parquet:reference' not found in 'owensbuddy-wgu/exercise_14'[0m
+
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/artifacts/artifact.py[0m:331: CommError
+[33m===================================================================================================== warnings summary =====================================================================================================[0m
+../../../../../../../opt/venv/lib/python3.10/site-packages/wandb/analytics/sentry.py:258
+../../../../../../../opt/venv/lib/python3.10/site-packages/wandb/analytics/sentry.py:258
+  /opt/venv/lib/python3.10/site-packages/wandb/analytics/sentry.py:258: DeprecationWarning: The `Scope.user` setter is deprecated in favor of `Scope.set_user()`.
+    self.scope.user = {"email": email}
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+[36m[1m================================================================================================= short test summary info ==================================================================================================[0m
+[31mERROR[0m test_data.py::[1mtest_column_presence_and_type[0m - wandb.errors.errors.CommError: artifact 'clean_data.parquet:reference' not found in 'owensbuddy-wgu/exercise_14'
+[31mERROR[0m test_data.py::[1mtest_class_names[0m - wandb.errors.errors.CommError: artifact 'clean_data.parquet:reference' not found in 'owensbuddy-wgu/exercise_14'
+[31mERROR[0m test_data.py::[1mtest_column_ranges[0m - wandb.errors.errors.CommError: artifact 'clean_data.parquet:reference' not found in 'owensbuddy-wgu/exercise_14'
+[31mERROR[0m test_data.py::[1mtest_kolmogorov_smirnov[0m - wandb.errors.errors.CommError: artifact 'clean_data.parquet:reference' not found in 'owensbuddy-wgu/exercise_14'
+[31m============================================================================================== [33m2 warnings[0m, [31m[1m4 errors[0m[31m in 5.84s[0m[31m ===============================================================================================[0m

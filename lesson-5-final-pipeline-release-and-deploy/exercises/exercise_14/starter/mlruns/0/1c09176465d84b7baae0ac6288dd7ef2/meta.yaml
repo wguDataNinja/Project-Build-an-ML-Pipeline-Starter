@@ -1,0 +1,14 @@
+artifact_uri: file:///workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/mlruns/0/1c09176465d84b7baae0ac6288dd7ef2/artifacts
+end_time: 1749927685964
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 1c09176465d84b7baae0ac6288dd7ef2
+run_name: salty-sponge-983
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749927676250
+status: 3
+tags: []
+user_id: student

@@ -1,0 +1,14 @@
+artifact_uri: file:///workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/mlruns/0/0ed121a6ff9142a4a6fceb0a350e0abb/artifacts
+end_time: 1749892625215
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 0ed121a6ff9142a4a6fceb0a350e0abb
+run_name: learned-pug-723
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749892618767
+status: 3
+tags: []
+user_id: student

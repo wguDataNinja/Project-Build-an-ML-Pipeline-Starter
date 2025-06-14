@@ -1,0 +1,17 @@
+{"time":"2025-06-14T19:20:31.637797264Z","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"/workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/check_data/wandb/run-20250614_192031-xswam4le/logs/debug-core.log"}
+{"time":"2025-06-14T19:20:31.791856669Z","level":"INFO","msg":"stream: created new stream","id":"xswam4le"}
+{"time":"2025-06-14T19:20:31.791939399Z","level":"INFO","msg":"stream: started","id":"xswam4le"}
+{"time":"2025-06-14T19:20:31.791970729Z","level":"INFO","msg":"writer: Do: started","stream_id":"xswam4le"}
+{"time":"2025-06-14T19:20:31.792024809Z","level":"INFO","msg":"handler: started","stream_id":"xswam4le"}
+{"time":"2025-06-14T19:20:31.792169799Z","level":"INFO","msg":"sender: started","stream_id":"xswam4le"}
+{"time":"2025-06-14T19:20:31.958821433Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-06-14T19:20:34.610835219Z","level":"WARN","msg":"sender: sendUseArtifact: job builder disabled, skipping"}
+{"time":"2025-06-14T19:20:35.053657305Z","level":"WARN","msg":"sender: sendUseArtifact: job builder disabled, skipping"}
+{"time":"2025-06-14T19:20:35.345417075Z","level":"INFO","msg":"stream: closing","id":"xswam4le"}
+{"time":"2025-06-14T19:20:35.345455785Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-06-14T19:20:35.345536595Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-06-14T19:20:35.596852027Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-06-14T19:20:35.691237654Z","level":"INFO","msg":"handler: closed","stream_id":"xswam4le"}
+{"time":"2025-06-14T19:20:35.691258024Z","level":"INFO","msg":"writer: Close: closed","stream_id":"xswam4le"}
+{"time":"2025-06-14T19:20:35.691285444Z","level":"INFO","msg":"sender: closed","stream_id":"xswam4le"}
+{"time":"2025-06-14T19:20:35.691366004Z","level":"INFO","msg":"stream: closed","id":"xswam4le"}

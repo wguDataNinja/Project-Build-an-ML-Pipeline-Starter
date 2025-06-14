@@ -1,0 +1,57 @@
+{
+  "dataframe_split": {
+    "columns": [
+      "Unnamed: 0",
+      "danceability",
+      "energy",
+      "key",
+      "loudness",
+      "mode",
+      "speechiness",
+      "acousticness",
+      "instrumentalness",
+      "liveness",
+      "valence",
+      "tempo",
+      "type",
+      "duration_ms",
+      "time_signature"
+    ],
+    "data": [
+      [
+        13944,
+        0.4,
+        0.959,
+        2.0,
+        -3.258,
+        0.0,
+        0.103,
+        0.000187,
+        4.21e-06,
+        0.231,
+        0.339,
+        149.062,
+        "audio_features",
+        230093,
+        4
+      ],
+      [
+        16099,
+        0.821,
+        0.5539999999999999,
+        9.0,
+        -5.992999999999999,
+        1.0,
+        0.0542,
+        0.0586,
+        2.81e-06,
+        0.172,
+        0.472,
+        125.011,
+        "audio_features",
+        203573,
+        4
+      ]
+    ]
+  }
+}

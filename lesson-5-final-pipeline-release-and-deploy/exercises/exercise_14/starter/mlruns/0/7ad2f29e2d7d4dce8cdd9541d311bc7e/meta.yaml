@@ -1,0 +1,14 @@
+artifact_uri: file:///workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/mlruns/0/7ad2f29e2d7d4dce8cdd9541d311bc7e/artifacts
+end_time: 1749893884340
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 7ad2f29e2d7d4dce8cdd9541d311bc7e
+run_name: mercurial-koi-752
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749893873284
+status: 3
+tags: []
+user_id: student

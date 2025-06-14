@@ -1,0 +1,534 @@
+[1m=================================================================================================== test session starts ====================================================================================================[0m
+platform linux -- Python 3.10.13, pytest-8.3.2, pluggy-1.5.0 -- /opt/venv/bin/python
+cachedir: .pytest_cache
+rootdir: /workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/check_data
+plugins: anyio-4.6.2.post1, hydra-core-1.3.2
+collected 4 items                                                                                                                                                                                                          [0m[1m
+
+test_data.py::test_column_presence_and_type [31mERROR[0m
+test_data.py::test_class_names [31mERROR[0m
+test_data.py::test_column_ranges [31mERROR[0m
+test_data.py::test_kolmogorov_smirnov [31mERROR[0m
+
+========================================================================================================== ERRORS ==========================================================================================================
+[31m[1m_____________________________________________________________________________________ ERROR at setup of test_column_presence_and_type ______________________________________________________________________________________[0m
+
+args = (<wandb.apis.public.api.Api object at 0x79d8a280c5e0>,), kwargs = {'name': 'clean_data.parquet', 'type': None}, message = "HTTP 400: artifacts must be specified as 'collection:alias'"
+errors = ["artifacts must be specified as 'collection:alias'"], status = 400
+
+    [0m[37m@wraps[39;49;00m(func)[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92mwrapper[39;49;00m(*args, **kwargs):[90m[39;49;00m
+        message = [33m"[39;49;00m[33mWhoa, you found a bug.[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+        [94mtry[39;49;00m:[90m[39;49;00m
+>           [94mreturn[39;49;00m func(*args, **kwargs)[90m[39;49;00m
+
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/apis/normalize.py[0m:25:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/apis/public/api.py[0m:1319: in _artifact
+    [0martifact = wandb.Artifact._from_name([90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/artifacts/artifact.py[0m:322: in _from_name
+    [0mresponse = client.execute([90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/lib/retry.py[0m:211: in wrapped_fn
+    [0m[94mreturn[39;49;00m retrier(*args, **kargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/lib/retry.py[0m:134: in __call__
+    [0mresult = [96mself[39;49;00m._call_fn(*args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/apis/public/api.py[0m:110: in execute
+    [0m[94mreturn[39;49;00m [96mself[39;49;00m._client.execute(*args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/vendor/gql-0.2.0/wandb_gql/client.py[0m:52: in execute
+    [0mresult = [96mself[39;49;00m._get_result(document, *args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/vendor/gql-0.2.0/wandb_gql/client.py[0m:60: in _get_result
+    [0m[94mreturn[39;49;00m [96mself[39;49;00m.transport.execute(document, *args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/lib/gql_request.py[0m:59: in execute
+    [0mrequest.raise_for_status()[90m[39;49;00m
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <Response [400]>
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mraise_for_status[39;49;00m([96mself[39;49;00m):[90m[39;49;00m
+    [90m    [39;49;00m[33m"""Raises :class:`HTTPError`, if one occurred."""[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+        http_error_msg = [33m"[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+        [94mif[39;49;00m [96misinstance[39;49;00m([96mself[39;49;00m.reason, [96mbytes[39;49;00m):[90m[39;49;00m
+            [90m# We attempt to decode utf-8 first because some servers[39;49;00m[90m[39;49;00m
+            [90m# choose to localize their reason strings. If the string[39;49;00m[90m[39;49;00m
+            [90m# isn't utf-8, we fall back to iso-8859-1 for all other[39;49;00m[90m[39;49;00m
+            [90m# encodings. (See PR #3538)[39;49;00m[90m[39;49;00m
+            [94mtry[39;49;00m:[90m[39;49;00m
+                reason = [96mself[39;49;00m.reason.decode([33m"[39;49;00m[33mutf-8[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+            [94mexcept[39;49;00m [96mUnicodeDecodeError[39;49;00m:[90m[39;49;00m
+                reason = [96mself[39;49;00m.reason.decode([33m"[39;49;00m[33miso-8859-1[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+        [94melse[39;49;00m:[90m[39;49;00m
+            reason = [96mself[39;49;00m.reason[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m [94m400[39;49;00m <= [96mself[39;49;00m.status_code < [94m500[39;49;00m:[90m[39;49;00m
+            http_error_msg = ([90m[39;49;00m
+                [33mf[39;49;00m[33m"[39;49;00m[33m{[39;49;00m[96mself[39;49;00m.status_code[33m}[39;49;00m[33m Client Error: [39;49;00m[33m{[39;49;00mreason[33m}[39;49;00m[33m for url: [39;49;00m[33m{[39;49;00m[96mself[39;49;00m.url[33m}[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+            )[90m[39;49;00m
+    [90m[39;49;00m
+        [94melif[39;49;00m [94m500[39;49;00m <= [96mself[39;49;00m.status_code < [94m600[39;49;00m:[90m[39;49;00m
+            http_error_msg = ([90m[39;49;00m
+                [33mf[39;49;00m[33m"[39;49;00m[33m{[39;49;00m[96mself[39;49;00m.status_code[33m}[39;49;00m[33m Server Error: [39;49;00m[33m{[39;49;00mreason[33m}[39;49;00m[33m for url: [39;49;00m[33m{[39;49;00m[96mself[39;49;00m.url[33m}[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+            )[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m http_error_msg:[90m[39;49;00m
+>           [94mraise[39;49;00m HTTPError(http_error_msg, response=[96mself[39;49;00m)[90m[39;49;00m
+[1m[31mE           requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://api.wandb.ai/graphql[0m
+
+[1m[31m/opt/venv/lib/python3.10/site-packages/requests/models.py[0m:1024: HTTPError
+
+[33mDuring handling of the above exception, another exception occurred:[0m
+
+request = <SubRequest 'data' for <Function test_column_presence_and_type>>
+
+    [0m[37m@pytest[39;49;00m.fixture(scope=[33m"[39;49;00m[33msession[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92mdata[39;49;00m(request):[90m[39;49;00m
+    [90m[39;49;00m
+        reference_artifact = request.config.option.reference_artifact[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m reference_artifact [95mis[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+            pytest.fail([33m"[39;49;00m[33m--reference_artifact missing on command line[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+        sample_artifact = request.config.option.sample_artifact[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m sample_artifact [95mis[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+            pytest.fail([33m"[39;49;00m[33m--sample_artifact missing on command line[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+        local_path = run.use_artifact(reference_artifact).file()[90m[39;49;00m
+        sample1 = pd.read_parquet(local_path)   [90m# <-- changed here[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+>       local_path = run.use_artifact(sample_artifact).file()[90m[39;49;00m
+
+[1m[31mconftest.py[0m:30:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/wandb_run.py[0m:391: in wrapper
+    [0m[94mreturn[39;49;00m func([96mself[39;49;00m, *args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/wandb_run.py[0m:449: in wrapper_fn
+    [0m[94mreturn[39;49;00m func([96mself[39;49;00m, *args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/wandb_run.py[0m:436: in wrapper
+    [0m[94mreturn[39;49;00m func([96mself[39;49;00m, *args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/wandb_run.py[0m:3065: in use_artifact
+    [0martifact = public_api._artifact([96mtype[39;49;00m=[96mtype[39;49;00m, name=name)[90m[39;49;00m
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = (<wandb.apis.public.api.Api object at 0x79d8a280c5e0>,), kwargs = {'name': 'clean_data.parquet', 'type': None}, message = "HTTP 400: artifacts must be specified as 'collection:alias'"
+errors = ["artifacts must be specified as 'collection:alias'"], status = 400
+
+    [0m[37m@wraps[39;49;00m(func)[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92mwrapper[39;49;00m(*args, **kwargs):[90m[39;49;00m
+        message = [33m"[39;49;00m[33mWhoa, you found a bug.[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+        [94mtry[39;49;00m:[90m[39;49;00m
+            [94mreturn[39;49;00m func(*args, **kwargs)[90m[39;49;00m
+    [90m[39;49;00m
+        [94mexcept[39;49;00m requests.HTTPError [94mas[39;49;00m error:[90m[39;49;00m
+            errors = parse_backend_error_messages(error.response)[90m[39;49;00m
+            status = error.response.status_code[90m[39;49;00m
+    [90m[39;49;00m
+            [94mif[39;49;00m errors:[90m[39;49;00m
+                message = [33mf[39;49;00m[33m"[39;49;00m[33mHTTP [39;49;00m[33m{[39;49;00mstatus[33m}[39;49;00m[33m: [39;49;00m[33m{[39;49;00m[33m'[39;49;00m[33m; [39;49;00m[33m'[39;49;00m.join(errors)[33m}[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+            [94melif[39;49;00m error.response.text:[90m[39;49;00m
+                message = [33mf[39;49;00m[33m"[39;49;00m[33mHTTP [39;49;00m[33m{[39;49;00mstatus[33m}[39;49;00m[33m: [39;49;00m[33m{[39;49;00merror.response.text[33m}[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+            [94melif[39;49;00m error.response.reason:[90m[39;49;00m
+                [90m# Visually different to distinguish backend errors from[39;49;00m[90m[39;49;00m
+                [90m# standard HTTP status descriptions.[39;49;00m[90m[39;49;00m
+                message = [33mf[39;49;00m[33m"[39;49;00m[33mHTTP [39;49;00m[33m{[39;49;00mstatus[33m}[39;49;00m[33m ([39;49;00m[33m{[39;49;00merror.response.reason[33m}[39;49;00m[33m)[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+            [94melse[39;49;00m:[90m[39;49;00m
+                message = [33mf[39;49;00m[33m"[39;49;00m[33mHTTP [39;49;00m[33m{[39;49;00mstatus[33m}[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+>           [94mraise[39;49;00m CommError(message, error)[90m[39;49;00m
+[1m[31mE           wandb.errors.errors.CommError: HTTP 400: artifacts must be specified as 'collection:alias'[0m
+
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/apis/normalize.py[0m:42: CommError
+[31m[1m____________________________________________________________________________________________ ERROR at setup of test_class_names ____________________________________________________________________________________________[0m
+
+args = (<wandb.apis.public.api.Api object at 0x79d8a280c5e0>,), kwargs = {'name': 'clean_data.parquet', 'type': None}, message = "HTTP 400: artifacts must be specified as 'collection:alias'"
+errors = ["artifacts must be specified as 'collection:alias'"], status = 400
+
+    [0m[37m@wraps[39;49;00m(func)[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92mwrapper[39;49;00m(*args, **kwargs):[90m[39;49;00m
+        message = [33m"[39;49;00m[33mWhoa, you found a bug.[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+        [94mtry[39;49;00m:[90m[39;49;00m
+>           [94mreturn[39;49;00m func(*args, **kwargs)[90m[39;49;00m
+
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/apis/normalize.py[0m:25:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/apis/public/api.py[0m:1319: in _artifact
+    [0martifact = wandb.Artifact._from_name([90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/artifacts/artifact.py[0m:322: in _from_name
+    [0mresponse = client.execute([90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/lib/retry.py[0m:211: in wrapped_fn
+    [0m[94mreturn[39;49;00m retrier(*args, **kargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/lib/retry.py[0m:134: in __call__
+    [0mresult = [96mself[39;49;00m._call_fn(*args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/apis/public/api.py[0m:110: in execute
+    [0m[94mreturn[39;49;00m [96mself[39;49;00m._client.execute(*args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/vendor/gql-0.2.0/wandb_gql/client.py[0m:52: in execute
+    [0mresult = [96mself[39;49;00m._get_result(document, *args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/vendor/gql-0.2.0/wandb_gql/client.py[0m:60: in _get_result
+    [0m[94mreturn[39;49;00m [96mself[39;49;00m.transport.execute(document, *args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/lib/gql_request.py[0m:59: in execute
+    [0mrequest.raise_for_status()[90m[39;49;00m
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <Response [400]>
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mraise_for_status[39;49;00m([96mself[39;49;00m):[90m[39;49;00m
+    [90m    [39;49;00m[33m"""Raises :class:`HTTPError`, if one occurred."""[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+        http_error_msg = [33m"[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+        [94mif[39;49;00m [96misinstance[39;49;00m([96mself[39;49;00m.reason, [96mbytes[39;49;00m):[90m[39;49;00m
+            [90m# We attempt to decode utf-8 first because some servers[39;49;00m[90m[39;49;00m
+            [90m# choose to localize their reason strings. If the string[39;49;00m[90m[39;49;00m
+            [90m# isn't utf-8, we fall back to iso-8859-1 for all other[39;49;00m[90m[39;49;00m
+            [90m# encodings. (See PR #3538)[39;49;00m[90m[39;49;00m
+            [94mtry[39;49;00m:[90m[39;49;00m
+                reason = [96mself[39;49;00m.reason.decode([33m"[39;49;00m[33mutf-8[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+            [94mexcept[39;49;00m [96mUnicodeDecodeError[39;49;00m:[90m[39;49;00m
+                reason = [96mself[39;49;00m.reason.decode([33m"[39;49;00m[33miso-8859-1[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+        [94melse[39;49;00m:[90m[39;49;00m
+            reason = [96mself[39;49;00m.reason[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m [94m400[39;49;00m <= [96mself[39;49;00m.status_code < [94m500[39;49;00m:[90m[39;49;00m
+            http_error_msg = ([90m[39;49;00m
+                [33mf[39;49;00m[33m"[39;49;00m[33m{[39;49;00m[96mself[39;49;00m.status_code[33m}[39;49;00m[33m Client Error: [39;49;00m[33m{[39;49;00mreason[33m}[39;49;00m[33m for url: [39;49;00m[33m{[39;49;00m[96mself[39;49;00m.url[33m}[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+            )[90m[39;49;00m
+    [90m[39;49;00m
+        [94melif[39;49;00m [94m500[39;49;00m <= [96mself[39;49;00m.status_code < [94m600[39;49;00m:[90m[39;49;00m
+            http_error_msg = ([90m[39;49;00m
+                [33mf[39;49;00m[33m"[39;49;00m[33m{[39;49;00m[96mself[39;49;00m.status_code[33m}[39;49;00m[33m Server Error: [39;49;00m[33m{[39;49;00mreason[33m}[39;49;00m[33m for url: [39;49;00m[33m{[39;49;00m[96mself[39;49;00m.url[33m}[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+            )[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m http_error_msg:[90m[39;49;00m
+>           [94mraise[39;49;00m HTTPError(http_error_msg, response=[96mself[39;49;00m)[90m[39;49;00m
+[1m[31mE           requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://api.wandb.ai/graphql[0m
+
+[1m[31m/opt/venv/lib/python3.10/site-packages/requests/models.py[0m:1024: HTTPError
+
+[33mDuring handling of the above exception, another exception occurred:[0m
+
+request = <SubRequest 'data' for <Function test_column_presence_and_type>>
+
+    [0m[37m@pytest[39;49;00m.fixture(scope=[33m"[39;49;00m[33msession[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92mdata[39;49;00m(request):[90m[39;49;00m
+    [90m[39;49;00m
+        reference_artifact = request.config.option.reference_artifact[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m reference_artifact [95mis[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+            pytest.fail([33m"[39;49;00m[33m--reference_artifact missing on command line[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+        sample_artifact = request.config.option.sample_artifact[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m sample_artifact [95mis[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+            pytest.fail([33m"[39;49;00m[33m--sample_artifact missing on command line[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+        local_path = run.use_artifact(reference_artifact).file()[90m[39;49;00m
+        sample1 = pd.read_parquet(local_path)   [90m# <-- changed here[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+>       local_path = run.use_artifact(sample_artifact).file()[90m[39;49;00m
+
+[1m[31mconftest.py[0m:30:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/wandb_run.py[0m:391: in wrapper
+    [0m[94mreturn[39;49;00m func([96mself[39;49;00m, *args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/wandb_run.py[0m:449: in wrapper_fn
+    [0m[94mreturn[39;49;00m func([96mself[39;49;00m, *args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/wandb_run.py[0m:436: in wrapper
+    [0m[94mreturn[39;49;00m func([96mself[39;49;00m, *args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/wandb_run.py[0m:3065: in use_artifact
+    [0martifact = public_api._artifact([96mtype[39;49;00m=[96mtype[39;49;00m, name=name)[90m[39;49;00m
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = (<wandb.apis.public.api.Api object at 0x79d8a280c5e0>,), kwargs = {'name': 'clean_data.parquet', 'type': None}, message = "HTTP 400: artifacts must be specified as 'collection:alias'"
+errors = ["artifacts must be specified as 'collection:alias'"], status = 400
+
+    [0m[37m@wraps[39;49;00m(func)[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92mwrapper[39;49;00m(*args, **kwargs):[90m[39;49;00m
+        message = [33m"[39;49;00m[33mWhoa, you found a bug.[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+        [94mtry[39;49;00m:[90m[39;49;00m
+            [94mreturn[39;49;00m func(*args, **kwargs)[90m[39;49;00m
+    [90m[39;49;00m
+        [94mexcept[39;49;00m requests.HTTPError [94mas[39;49;00m error:[90m[39;49;00m
+            errors = parse_backend_error_messages(error.response)[90m[39;49;00m
+            status = error.response.status_code[90m[39;49;00m
+    [90m[39;49;00m
+            [94mif[39;49;00m errors:[90m[39;49;00m
+                message = [33mf[39;49;00m[33m"[39;49;00m[33mHTTP [39;49;00m[33m{[39;49;00mstatus[33m}[39;49;00m[33m: [39;49;00m[33m{[39;49;00m[33m'[39;49;00m[33m; [39;49;00m[33m'[39;49;00m.join(errors)[33m}[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+            [94melif[39;49;00m error.response.text:[90m[39;49;00m
+                message = [33mf[39;49;00m[33m"[39;49;00m[33mHTTP [39;49;00m[33m{[39;49;00mstatus[33m}[39;49;00m[33m: [39;49;00m[33m{[39;49;00merror.response.text[33m}[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+            [94melif[39;49;00m error.response.reason:[90m[39;49;00m
+                [90m# Visually different to distinguish backend errors from[39;49;00m[90m[39;49;00m
+                [90m# standard HTTP status descriptions.[39;49;00m[90m[39;49;00m
+                message = [33mf[39;49;00m[33m"[39;49;00m[33mHTTP [39;49;00m[33m{[39;49;00mstatus[33m}[39;49;00m[33m ([39;49;00m[33m{[39;49;00merror.response.reason[33m}[39;49;00m[33m)[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+            [94melse[39;49;00m:[90m[39;49;00m
+                message = [33mf[39;49;00m[33m"[39;49;00m[33mHTTP [39;49;00m[33m{[39;49;00mstatus[33m}[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+>           [94mraise[39;49;00m CommError(message, error)[90m[39;49;00m
+[1m[31mE           wandb.errors.errors.CommError: HTTP 400: artifacts must be specified as 'collection:alias'[0m
+
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/apis/normalize.py[0m:42: CommError
+[31m[1m___________________________________________________________________________________________ ERROR at setup of test_column_ranges ___________________________________________________________________________________________[0m
+
+args = (<wandb.apis.public.api.Api object at 0x79d8a280c5e0>,), kwargs = {'name': 'clean_data.parquet', 'type': None}, message = "HTTP 400: artifacts must be specified as 'collection:alias'"
+errors = ["artifacts must be specified as 'collection:alias'"], status = 400
+
+    [0m[37m@wraps[39;49;00m(func)[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92mwrapper[39;49;00m(*args, **kwargs):[90m[39;49;00m
+        message = [33m"[39;49;00m[33mWhoa, you found a bug.[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+        [94mtry[39;49;00m:[90m[39;49;00m
+>           [94mreturn[39;49;00m func(*args, **kwargs)[90m[39;49;00m
+
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/apis/normalize.py[0m:25:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/apis/public/api.py[0m:1319: in _artifact
+    [0martifact = wandb.Artifact._from_name([90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/artifacts/artifact.py[0m:322: in _from_name
+    [0mresponse = client.execute([90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/lib/retry.py[0m:211: in wrapped_fn
+    [0m[94mreturn[39;49;00m retrier(*args, **kargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/lib/retry.py[0m:134: in __call__
+    [0mresult = [96mself[39;49;00m._call_fn(*args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/apis/public/api.py[0m:110: in execute
+    [0m[94mreturn[39;49;00m [96mself[39;49;00m._client.execute(*args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/vendor/gql-0.2.0/wandb_gql/client.py[0m:52: in execute
+    [0mresult = [96mself[39;49;00m._get_result(document, *args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/vendor/gql-0.2.0/wandb_gql/client.py[0m:60: in _get_result
+    [0m[94mreturn[39;49;00m [96mself[39;49;00m.transport.execute(document, *args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/lib/gql_request.py[0m:59: in execute
+    [0mrequest.raise_for_status()[90m[39;49;00m
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <Response [400]>
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mraise_for_status[39;49;00m([96mself[39;49;00m):[90m[39;49;00m
+    [90m    [39;49;00m[33m"""Raises :class:`HTTPError`, if one occurred."""[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+        http_error_msg = [33m"[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+        [94mif[39;49;00m [96misinstance[39;49;00m([96mself[39;49;00m.reason, [96mbytes[39;49;00m):[90m[39;49;00m
+            [90m# We attempt to decode utf-8 first because some servers[39;49;00m[90m[39;49;00m
+            [90m# choose to localize their reason strings. If the string[39;49;00m[90m[39;49;00m
+            [90m# isn't utf-8, we fall back to iso-8859-1 for all other[39;49;00m[90m[39;49;00m
+            [90m# encodings. (See PR #3538)[39;49;00m[90m[39;49;00m
+            [94mtry[39;49;00m:[90m[39;49;00m
+                reason = [96mself[39;49;00m.reason.decode([33m"[39;49;00m[33mutf-8[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+            [94mexcept[39;49;00m [96mUnicodeDecodeError[39;49;00m:[90m[39;49;00m
+                reason = [96mself[39;49;00m.reason.decode([33m"[39;49;00m[33miso-8859-1[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+        [94melse[39;49;00m:[90m[39;49;00m
+            reason = [96mself[39;49;00m.reason[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m [94m400[39;49;00m <= [96mself[39;49;00m.status_code < [94m500[39;49;00m:[90m[39;49;00m
+            http_error_msg = ([90m[39;49;00m
+                [33mf[39;49;00m[33m"[39;49;00m[33m{[39;49;00m[96mself[39;49;00m.status_code[33m}[39;49;00m[33m Client Error: [39;49;00m[33m{[39;49;00mreason[33m}[39;49;00m[33m for url: [39;49;00m[33m{[39;49;00m[96mself[39;49;00m.url[33m}[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+            )[90m[39;49;00m
+    [90m[39;49;00m
+        [94melif[39;49;00m [94m500[39;49;00m <= [96mself[39;49;00m.status_code < [94m600[39;49;00m:[90m[39;49;00m
+            http_error_msg = ([90m[39;49;00m
+                [33mf[39;49;00m[33m"[39;49;00m[33m{[39;49;00m[96mself[39;49;00m.status_code[33m}[39;49;00m[33m Server Error: [39;49;00m[33m{[39;49;00mreason[33m}[39;49;00m[33m for url: [39;49;00m[33m{[39;49;00m[96mself[39;49;00m.url[33m}[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+            )[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m http_error_msg:[90m[39;49;00m
+>           [94mraise[39;49;00m HTTPError(http_error_msg, response=[96mself[39;49;00m)[90m[39;49;00m
+[1m[31mE           requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://api.wandb.ai/graphql[0m
+
+[1m[31m/opt/venv/lib/python3.10/site-packages/requests/models.py[0m:1024: HTTPError
+
+[33mDuring handling of the above exception, another exception occurred:[0m
+
+request = <SubRequest 'data' for <Function test_column_presence_and_type>>
+
+    [0m[37m@pytest[39;49;00m.fixture(scope=[33m"[39;49;00m[33msession[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92mdata[39;49;00m(request):[90m[39;49;00m
+    [90m[39;49;00m
+        reference_artifact = request.config.option.reference_artifact[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m reference_artifact [95mis[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+            pytest.fail([33m"[39;49;00m[33m--reference_artifact missing on command line[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+        sample_artifact = request.config.option.sample_artifact[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m sample_artifact [95mis[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+            pytest.fail([33m"[39;49;00m[33m--sample_artifact missing on command line[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+        local_path = run.use_artifact(reference_artifact).file()[90m[39;49;00m
+        sample1 = pd.read_parquet(local_path)   [90m# <-- changed here[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+>       local_path = run.use_artifact(sample_artifact).file()[90m[39;49;00m
+
+[1m[31mconftest.py[0m:30:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/wandb_run.py[0m:391: in wrapper
+    [0m[94mreturn[39;49;00m func([96mself[39;49;00m, *args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/wandb_run.py[0m:449: in wrapper_fn
+    [0m[94mreturn[39;49;00m func([96mself[39;49;00m, *args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/wandb_run.py[0m:436: in wrapper
+    [0m[94mreturn[39;49;00m func([96mself[39;49;00m, *args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/wandb_run.py[0m:3065: in use_artifact
+    [0martifact = public_api._artifact([96mtype[39;49;00m=[96mtype[39;49;00m, name=name)[90m[39;49;00m
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = (<wandb.apis.public.api.Api object at 0x79d8a280c5e0>,), kwargs = {'name': 'clean_data.parquet', 'type': None}, message = "HTTP 400: artifacts must be specified as 'collection:alias'"
+errors = ["artifacts must be specified as 'collection:alias'"], status = 400
+
+    [0m[37m@wraps[39;49;00m(func)[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92mwrapper[39;49;00m(*args, **kwargs):[90m[39;49;00m
+        message = [33m"[39;49;00m[33mWhoa, you found a bug.[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+        [94mtry[39;49;00m:[90m[39;49;00m
+            [94mreturn[39;49;00m func(*args, **kwargs)[90m[39;49;00m
+    [90m[39;49;00m
+        [94mexcept[39;49;00m requests.HTTPError [94mas[39;49;00m error:[90m[39;49;00m
+            errors = parse_backend_error_messages(error.response)[90m[39;49;00m
+            status = error.response.status_code[90m[39;49;00m
+    [90m[39;49;00m
+            [94mif[39;49;00m errors:[90m[39;49;00m
+                message = [33mf[39;49;00m[33m"[39;49;00m[33mHTTP [39;49;00m[33m{[39;49;00mstatus[33m}[39;49;00m[33m: [39;49;00m[33m{[39;49;00m[33m'[39;49;00m[33m; [39;49;00m[33m'[39;49;00m.join(errors)[33m}[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+            [94melif[39;49;00m error.response.text:[90m[39;49;00m
+                message = [33mf[39;49;00m[33m"[39;49;00m[33mHTTP [39;49;00m[33m{[39;49;00mstatus[33m}[39;49;00m[33m: [39;49;00m[33m{[39;49;00merror.response.text[33m}[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+            [94melif[39;49;00m error.response.reason:[90m[39;49;00m
+                [90m# Visually different to distinguish backend errors from[39;49;00m[90m[39;49;00m
+                [90m# standard HTTP status descriptions.[39;49;00m[90m[39;49;00m
+                message = [33mf[39;49;00m[33m"[39;49;00m[33mHTTP [39;49;00m[33m{[39;49;00mstatus[33m}[39;49;00m[33m ([39;49;00m[33m{[39;49;00merror.response.reason[33m}[39;49;00m[33m)[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+            [94melse[39;49;00m:[90m[39;49;00m
+                message = [33mf[39;49;00m[33m"[39;49;00m[33mHTTP [39;49;00m[33m{[39;49;00mstatus[33m}[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+>           [94mraise[39;49;00m CommError(message, error)[90m[39;49;00m
+[1m[31mE           wandb.errors.errors.CommError: HTTP 400: artifacts must be specified as 'collection:alias'[0m
+
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/apis/normalize.py[0m:42: CommError
+[31m[1m________________________________________________________________________________________ ERROR at setup of test_kolmogorov_smirnov _________________________________________________________________________________________[0m
+
+args = (<wandb.apis.public.api.Api object at 0x79d8a280c5e0>,), kwargs = {'name': 'clean_data.parquet', 'type': None}, message = "HTTP 400: artifacts must be specified as 'collection:alias'"
+errors = ["artifacts must be specified as 'collection:alias'"], status = 400
+
+    [0m[37m@wraps[39;49;00m(func)[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92mwrapper[39;49;00m(*args, **kwargs):[90m[39;49;00m
+        message = [33m"[39;49;00m[33mWhoa, you found a bug.[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+        [94mtry[39;49;00m:[90m[39;49;00m
+>           [94mreturn[39;49;00m func(*args, **kwargs)[90m[39;49;00m
+
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/apis/normalize.py[0m:25:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/apis/public/api.py[0m:1319: in _artifact
+    [0martifact = wandb.Artifact._from_name([90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/artifacts/artifact.py[0m:322: in _from_name
+    [0mresponse = client.execute([90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/lib/retry.py[0m:211: in wrapped_fn
+    [0m[94mreturn[39;49;00m retrier(*args, **kargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/lib/retry.py[0m:134: in __call__
+    [0mresult = [96mself[39;49;00m._call_fn(*args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/apis/public/api.py[0m:110: in execute
+    [0m[94mreturn[39;49;00m [96mself[39;49;00m._client.execute(*args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/vendor/gql-0.2.0/wandb_gql/client.py[0m:52: in execute
+    [0mresult = [96mself[39;49;00m._get_result(document, *args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/vendor/gql-0.2.0/wandb_gql/client.py[0m:60: in _get_result
+    [0m[94mreturn[39;49;00m [96mself[39;49;00m.transport.execute(document, *args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/lib/gql_request.py[0m:59: in execute
+    [0mrequest.raise_for_status()[90m[39;49;00m
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <Response [400]>
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mraise_for_status[39;49;00m([96mself[39;49;00m):[90m[39;49;00m
+    [90m    [39;49;00m[33m"""Raises :class:`HTTPError`, if one occurred."""[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+        http_error_msg = [33m"[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+        [94mif[39;49;00m [96misinstance[39;49;00m([96mself[39;49;00m.reason, [96mbytes[39;49;00m):[90m[39;49;00m
+            [90m# We attempt to decode utf-8 first because some servers[39;49;00m[90m[39;49;00m
+            [90m# choose to localize their reason strings. If the string[39;49;00m[90m[39;49;00m
+            [90m# isn't utf-8, we fall back to iso-8859-1 for all other[39;49;00m[90m[39;49;00m
+            [90m# encodings. (See PR #3538)[39;49;00m[90m[39;49;00m
+            [94mtry[39;49;00m:[90m[39;49;00m
+                reason = [96mself[39;49;00m.reason.decode([33m"[39;49;00m[33mutf-8[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+            [94mexcept[39;49;00m [96mUnicodeDecodeError[39;49;00m:[90m[39;49;00m
+                reason = [96mself[39;49;00m.reason.decode([33m"[39;49;00m[33miso-8859-1[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+        [94melse[39;49;00m:[90m[39;49;00m
+            reason = [96mself[39;49;00m.reason[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m [94m400[39;49;00m <= [96mself[39;49;00m.status_code < [94m500[39;49;00m:[90m[39;49;00m
+            http_error_msg = ([90m[39;49;00m
+                [33mf[39;49;00m[33m"[39;49;00m[33m{[39;49;00m[96mself[39;49;00m.status_code[33m}[39;49;00m[33m Client Error: [39;49;00m[33m{[39;49;00mreason[33m}[39;49;00m[33m for url: [39;49;00m[33m{[39;49;00m[96mself[39;49;00m.url[33m}[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+            )[90m[39;49;00m
+    [90m[39;49;00m
+        [94melif[39;49;00m [94m500[39;49;00m <= [96mself[39;49;00m.status_code < [94m600[39;49;00m:[90m[39;49;00m
+            http_error_msg = ([90m[39;49;00m
+                [33mf[39;49;00m[33m"[39;49;00m[33m{[39;49;00m[96mself[39;49;00m.status_code[33m}[39;49;00m[33m Server Error: [39;49;00m[33m{[39;49;00mreason[33m}[39;49;00m[33m for url: [39;49;00m[33m{[39;49;00m[96mself[39;49;00m.url[33m}[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+            )[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m http_error_msg:[90m[39;49;00m
+>           [94mraise[39;49;00m HTTPError(http_error_msg, response=[96mself[39;49;00m)[90m[39;49;00m
+[1m[31mE           requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://api.wandb.ai/graphql[0m
+
+[1m[31m/opt/venv/lib/python3.10/site-packages/requests/models.py[0m:1024: HTTPError
+
+[33mDuring handling of the above exception, another exception occurred:[0m
+
+request = <SubRequest 'data' for <Function test_column_presence_and_type>>
+
+    [0m[37m@pytest[39;49;00m.fixture(scope=[33m"[39;49;00m[33msession[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92mdata[39;49;00m(request):[90m[39;49;00m
+    [90m[39;49;00m
+        reference_artifact = request.config.option.reference_artifact[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m reference_artifact [95mis[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+            pytest.fail([33m"[39;49;00m[33m--reference_artifact missing on command line[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+        sample_artifact = request.config.option.sample_artifact[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m sample_artifact [95mis[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+            pytest.fail([33m"[39;49;00m[33m--sample_artifact missing on command line[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+        local_path = run.use_artifact(reference_artifact).file()[90m[39;49;00m
+        sample1 = pd.read_parquet(local_path)   [90m# <-- changed here[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+>       local_path = run.use_artifact(sample_artifact).file()[90m[39;49;00m
+
+[1m[31mconftest.py[0m:30:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/wandb_run.py[0m:391: in wrapper
+    [0m[94mreturn[39;49;00m func([96mself[39;49;00m, *args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/wandb_run.py[0m:449: in wrapper_fn
+    [0m[94mreturn[39;49;00m func([96mself[39;49;00m, *args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/wandb_run.py[0m:436: in wrapper
+    [0m[94mreturn[39;49;00m func([96mself[39;49;00m, *args, **kwargs)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/sdk/wandb_run.py[0m:3065: in use_artifact
+    [0martifact = public_api._artifact([96mtype[39;49;00m=[96mtype[39;49;00m, name=name)[90m[39;49;00m
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = (<wandb.apis.public.api.Api object at 0x79d8a280c5e0>,), kwargs = {'name': 'clean_data.parquet', 'type': None}, message = "HTTP 400: artifacts must be specified as 'collection:alias'"
+errors = ["artifacts must be specified as 'collection:alias'"], status = 400
+
+    [0m[37m@wraps[39;49;00m(func)[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92mwrapper[39;49;00m(*args, **kwargs):[90m[39;49;00m
+        message = [33m"[39;49;00m[33mWhoa, you found a bug.[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+        [94mtry[39;49;00m:[90m[39;49;00m
+            [94mreturn[39;49;00m func(*args, **kwargs)[90m[39;49;00m
+    [90m[39;49;00m
+        [94mexcept[39;49;00m requests.HTTPError [94mas[39;49;00m error:[90m[39;49;00m
+            errors = parse_backend_error_messages(error.response)[90m[39;49;00m
+            status = error.response.status_code[90m[39;49;00m
+    [90m[39;49;00m
+            [94mif[39;49;00m errors:[90m[39;49;00m
+                message = [33mf[39;49;00m[33m"[39;49;00m[33mHTTP [39;49;00m[33m{[39;49;00mstatus[33m}[39;49;00m[33m: [39;49;00m[33m{[39;49;00m[33m'[39;49;00m[33m; [39;49;00m[33m'[39;49;00m.join(errors)[33m}[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+            [94melif[39;49;00m error.response.text:[90m[39;49;00m
+                message = [33mf[39;49;00m[33m"[39;49;00m[33mHTTP [39;49;00m[33m{[39;49;00mstatus[33m}[39;49;00m[33m: [39;49;00m[33m{[39;49;00merror.response.text[33m}[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+            [94melif[39;49;00m error.response.reason:[90m[39;49;00m
+                [90m# Visually different to distinguish backend errors from[39;49;00m[90m[39;49;00m
+                [90m# standard HTTP status descriptions.[39;49;00m[90m[39;49;00m
+                message = [33mf[39;49;00m[33m"[39;49;00m[33mHTTP [39;49;00m[33m{[39;49;00mstatus[33m}[39;49;00m[33m ([39;49;00m[33m{[39;49;00merror.response.reason[33m}[39;49;00m[33m)[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+            [94melse[39;49;00m:[90m[39;49;00m
+                message = [33mf[39;49;00m[33m"[39;49;00m[33mHTTP [39;49;00m[33m{[39;49;00mstatus[33m}[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+>           [94mraise[39;49;00m CommError(message, error)[90m[39;49;00m
+[1m[31mE           wandb.errors.errors.CommError: HTTP 400: artifacts must be specified as 'collection:alias'[0m
+
+[1m[31m/opt/venv/lib/python3.10/site-packages/wandb/apis/normalize.py[0m:42: CommError
+[33m===================================================================================================== warnings summary =====================================================================================================[0m
+../../../../../../../opt/venv/lib/python3.10/site-packages/wandb/analytics/sentry.py:258
+../../../../../../../opt/venv/lib/python3.10/site-packages/wandb/analytics/sentry.py:258
+  /opt/venv/lib/python3.10/site-packages/wandb/analytics/sentry.py:258: DeprecationWarning: The `Scope.user` setter is deprecated in favor of `Scope.set_user()`.
+    self.scope.user = {"email": email}
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+[36m[1m================================================================================================= short test summary info ==================================================================================================[0m
+[31mERROR[0m test_data.py::[1mtest_column_presence_and_type[0m - wandb.errors.errors.CommError: HTTP 400: artifacts must be specified as 'collection:alias'
+[31mERROR[0m test_data.py::[1mtest_class_names[0m - wandb.errors.errors.CommError: HTTP 400: artifacts must be specified as 'collection:alias'
+[31mERROR[0m test_data.py::[1mtest_column_ranges[0m - wandb.errors.errors.CommError: HTTP 400: artifacts must be specified as 'collection:alias'
+[31mERROR[0m test_data.py::[1mtest_kolmogorov_smirnov[0m - wandb.errors.errors.CommError: HTTP 400: artifacts must be specified as 'collection:alias'
+[31m============================================================================================== [33m2 warnings[0m, [31m[1m4 errors[0m[31m in 7.20s[0m[31m ===============================================================================================[0m

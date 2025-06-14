@@ -21,7 +21,7 @@ def go(args):
     artifact = run.use_artifact(args.input_artifact)
     artifact_path = artifact.file()
 
-    df = pd.read_csv(artifact_path, low_memory=False)
+    df = pd.read_parquet(artifact_path)
 
     # Split first in model_dev/test, then we further divide model_dev in train and validation
     logger.info("Splitting data into train, val and test")

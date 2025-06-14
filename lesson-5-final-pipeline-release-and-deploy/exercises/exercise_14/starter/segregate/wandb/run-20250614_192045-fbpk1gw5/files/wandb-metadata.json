@@ -1,0 +1,45 @@
+{
+  "os": "Linux-6.1.100+-x86_64-with-glibc2.31",
+  "python": "CPython 3.10.13",
+  "startedAt": "2025-06-14T19:20:45.973727Z",
+  "args": [
+    "--input_artifact",
+    "exercise_14/clean_data.parquet:latest",
+    "--artifact_root",
+    "trainval_data",
+    "--artifact_type",
+    "trainval_data",
+    "--test_size",
+    "0.3",
+    "--random_state",
+    "42",
+    "--stratify",
+    "genre"
+  ],
+  "program": "/workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/segregate/run.py",
+  "codePath": "lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/segregate/run.py",
+  "git": {
+    "remote": "https://github.com/udacity/nd0821-c2-build-model-workflow-exercises.git",
+    "commit": "0d72086a9301bf656d4656f49cc342b126b71048"
+  },
+  "email": "jowe160@wgu.edu",
+  "root": "/workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/segregate",
+  "host": "5eef7361d500712f2ea91fb8c56a2e5cfeb59d4b-84c9456bb7-cwth5",
+  "executable": "/opt/venv/bin/python",
+  "codePathLocal": "run.py",
+  "cpu_count": 8,
+  "cpu_count_logical": 16,
+  "disk": {
+    "/": {
+      "total": "2160158191616",
+      "used": "160168292352"
+    }
+  },
+  "memory": {
+    "total": "135080161280"
+  },
+  "cpu": {
+    "count": 8,
+    "countLogical": 16
+  }
+}

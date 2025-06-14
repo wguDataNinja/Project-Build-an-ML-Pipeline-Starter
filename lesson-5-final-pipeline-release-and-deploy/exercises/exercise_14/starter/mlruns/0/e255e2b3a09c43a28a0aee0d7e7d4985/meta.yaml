@@ -1,0 +1,14 @@
+artifact_uri: file:///workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/mlruns/0/e255e2b3a09c43a28a0aee0d7e7d4985/artifacts
+end_time: 1749893582157
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: e255e2b3a09c43a28a0aee0d7e7d4985
+run_name: unleashed-robin-80
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749893575101
+status: 3
+tags: []
+user_id: student

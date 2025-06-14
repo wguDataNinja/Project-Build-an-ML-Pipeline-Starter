@@ -1,0 +1,14 @@
+artifact_uri: file:///workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/mlruns/0/caf874e67e5c417b9ddd44e8a0f999a4/artifacts
+end_time: 1749928652251
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: caf874e67e5c417b9ddd44e8a0f999a4
+run_name: delightful-ape-701
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749928639240
+status: 3
+tags: []
+user_id: student

@@ -1,0 +1,14 @@
+artifact_uri: file:///workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/mlruns/0/885f7eac8d4b477e83d74cb356c1e756/artifacts
+end_time: 1749895482893
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 885f7eac8d4b477e83d74cb356c1e756
+run_name: bustling-bird-379
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749895478796
+status: 3
+tags: []
+user_id: student

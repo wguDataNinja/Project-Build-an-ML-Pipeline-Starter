@@ -1,0 +1,14 @@
+artifact_uri: file:///workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/mlruns/0/034a8fceba8e477a8342770e151fcd1f/artifacts
+end_time: 1749894535594
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 034a8fceba8e477a8342770e151fcd1f
+run_name: languid-duck-669
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749894531978
+status: 3
+tags: []
+user_id: student

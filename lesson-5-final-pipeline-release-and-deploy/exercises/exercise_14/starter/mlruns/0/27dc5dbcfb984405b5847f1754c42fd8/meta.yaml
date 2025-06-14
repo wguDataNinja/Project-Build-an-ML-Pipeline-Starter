@@ -1,0 +1,14 @@
+artifact_uri: file:///workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/mlruns/0/27dc5dbcfb984405b5847f1754c42fd8/artifacts
+end_time: 1749893545661
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 27dc5dbcfb984405b5847f1754c42fd8
+run_name: magnificent-cat-174
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749893541485
+status: 4
+tags: []
+user_id: student

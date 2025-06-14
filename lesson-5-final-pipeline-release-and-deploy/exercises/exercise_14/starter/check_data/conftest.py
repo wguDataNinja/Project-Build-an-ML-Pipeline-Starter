@@ -1,16 +1,15 @@
+# /workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/check_data/conftest.py
+
 import pytest
 import pandas as pd
 import wandb
 
-
 run = wandb.init(job_type="data_tests")
-
 
 def pytest_addoption(parser):
     parser.addoption("--reference_artifact", action="store")
     parser.addoption("--sample_artifact", action="store")
     parser.addoption("--ks_alpha", action="store")
-
 
 @pytest.fixture(scope="session")
 def data(request):
@@ -26,13 +25,12 @@ def data(request):
         pytest.fail("--sample_artifact missing on command line")
 
     local_path = run.use_artifact(reference_artifact).file()
-    sample1 = pd.read_csv(local_path)
+    sample1 = pd.read_parquet(local_path)   # <-- changed here
 
     local_path = run.use_artifact(sample_artifact).file()
-    sample2 = pd.read_csv(local_path)
+    sample2 = pd.read_parquet(local_path)   # <-- changed here
 
     return sample1, sample2
-
 
 @pytest.fixture(scope='session')
 def ks_alpha(request):

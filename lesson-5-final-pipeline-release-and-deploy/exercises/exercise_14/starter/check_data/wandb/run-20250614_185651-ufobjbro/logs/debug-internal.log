@@ -1,0 +1,15 @@
+{"time":"2025-06-14T18:56:51.962488804Z","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"/workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/check_data/wandb/run-20250614_185651-ufobjbro/logs/debug-core.log"}
+{"time":"2025-06-14T18:56:52.109044634Z","level":"INFO","msg":"stream: created new stream","id":"ufobjbro"}
+{"time":"2025-06-14T18:56:52.109079044Z","level":"INFO","msg":"stream: started","id":"ufobjbro"}
+{"time":"2025-06-14T18:56:52.109936115Z","level":"INFO","msg":"sender: started","stream_id":"ufobjbro"}
+{"time":"2025-06-14T18:56:52.109979504Z","level":"INFO","msg":"handler: started","stream_id":"ufobjbro"}
+{"time":"2025-06-14T18:56:52.109999024Z","level":"INFO","msg":"writer: Do: started","stream_id":"ufobjbro"}
+{"time":"2025-06-14T18:56:52.249234571Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-06-14T18:56:59.856008834Z","level":"INFO","msg":"stream: closing","id":"ufobjbro"}
+{"time":"2025-06-14T18:56:59.856053024Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-06-14T18:56:59.856157054Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-06-14T18:57:00.140266009Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-06-14T18:57:00.244166008Z","level":"INFO","msg":"handler: closed","stream_id":"ufobjbro"}
+{"time":"2025-06-14T18:57:00.244201868Z","level":"INFO","msg":"writer: Close: closed","stream_id":"ufobjbro"}
+{"time":"2025-06-14T18:57:00.244217178Z","level":"INFO","msg":"sender: closed","stream_id":"ufobjbro"}
+{"time":"2025-06-14T18:57:00.244314418Z","level":"INFO","msg":"stream: closed","id":"ufobjbro"}

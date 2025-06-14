@@ -1,0 +1,16 @@
+{"time":"2025-06-14T19:01:11.54359967Z","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"/workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/download/wandb/run-20250614_190111-ej164iqy/logs/debug-core.log"}
+{"time":"2025-06-14T19:01:11.765661998Z","level":"INFO","msg":"stream: created new stream","id":"ej164iqy"}
+{"time":"2025-06-14T19:01:11.765705168Z","level":"INFO","msg":"stream: started","id":"ej164iqy"}
+{"time":"2025-06-14T19:01:11.765735798Z","level":"INFO","msg":"sender: started","stream_id":"ej164iqy"}
+{"time":"2025-06-14T19:01:11.765730278Z","level":"INFO","msg":"handler: started","stream_id":"ej164iqy"}
+{"time":"2025-06-14T19:01:11.765777898Z","level":"INFO","msg":"writer: Do: started","stream_id":"ej164iqy"}
+{"time":"2025-06-14T19:01:11.944617211Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-06-14T19:01:13.541107734Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-06-14T19:01:13.541215784Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-06-14T19:01:13.842425744Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-06-14T19:01:13.927534046Z","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2025-06-14T19:01:13.943474894Z","level":"INFO","msg":"stream: closing","id":"ej164iqy"}
+{"time":"2025-06-14T19:01:13.943512054Z","level":"INFO","msg":"handler: closed","stream_id":"ej164iqy"}
+{"time":"2025-06-14T19:01:13.943528674Z","level":"INFO","msg":"writer: Close: closed","stream_id":"ej164iqy"}
+{"time":"2025-06-14T19:01:13.943569254Z","level":"INFO","msg":"sender: closed","stream_id":"ej164iqy"}
+{"time":"2025-06-14T19:01:13.943640454Z","level":"INFO","msg":"stream: closed","id":"ej164iqy"}

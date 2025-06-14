@@ -1,0 +1,73 @@
+main:
+  project_name: exercise_14
+  experiment_name: dev
+  execute_steps: test_regression_model
+  random_seed: 42
+data:
+  file_url: https://github.com/udacity/nd0821-c2-build-model-workflow-exercises/blob/master/lesson-2-data-exploration-and-preparation/exercises/exercise_4/starter/genres_mod.parquet?raw=true
+  reference_dataset: exercise_14/clean_data.parquet:latest
+  artifact_name: raw_data_v2.parquet
+  artifact_type: raw_data
+  artifact_description: Data as downloaded
+  ks_alpha: 0.05
+  test_size: 0.3
+  val_size: 0.3
+  stratify: genre
+random_forest_pipeline:
+  random_forest:
+    n_estimators: 100
+    criterion: gini
+    max_depth: 13
+    min_samples_split: 2
+    min_samples_leaf: 1
+    min_weight_fraction_leaf: 0.0
+    max_features: null
+    max_leaf_nodes: null
+    min_impurity_decrease: 0.0
+    bootstrap: true
+    oob_score: false
+    n_jobs: null
+    random_state: 42
+    verbose: 0
+    warm_start: false
+    class_weight: balanced
+    ccp_alpha: 0.0
+    max_samples: null
+  tfidf:
+    max_features: 10
+  features:
+    numerical:
+    - danceability
+    - energy
+    - loudness
+    - speechiness
+    - acousticness
+    - instrumentalness
+    - liveness
+    - valence
+    - tempo
+    - duration_ms
+    categorical:
+    - time_signature
+    - key
+    nlp: []
+  export_artifact: model_export
+basic_cleaning:
+  input_artifact: exercise_14/raw_data_v2.parquet:latest
+  output_artifact: clean_data.parquet
+  output_type: cleaned_data
+  output_description: Cleaned dataset after dropping columns
+segregate:
+  input_artifact: exercise_14/clean_data.parquet:latest
+  artifact_root: trainval_data
+  artifact_type: trainval_data
+  test_size: ${data.test_size}
+  random_state: ${main.random_seed}
+  stratify: ${data.stratify}
+random_forest:
+  train_data: exercise_14/trainval_data_train.csv:latest
+  model_config: null
+  export_artifact: ${random_forest_pipeline.export_artifact}
+  random_seed: ${main.random_seed}
+  val_size: ${data.val_size}
+  stratify: ${data.stratify}

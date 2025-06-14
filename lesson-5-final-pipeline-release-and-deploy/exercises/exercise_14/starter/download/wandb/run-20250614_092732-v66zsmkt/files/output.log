@@ -1,0 +1,9 @@
+2025-06-14 09:27:34,222 Creating artifact
+Traceback (most recent call last):
+  File "/workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/download/download_data.py", line 45, in go
+    artifact.add_file(fp.name, name=basename)
+  File "/opt/venv/lib/python3.10/site-packages/wandb/sdk/artifacts/_validators.py", line 255, in wrapper
+    return method(self, *args, **kwargs)
+  File "/opt/venv/lib/python3.10/site-packages/wandb/sdk/artifacts/artifact.py", line 1422, in add_file
+    raise ValueError(f"Path is not a file: {local_path!r}")
+ValueError: Path is not a file: '/tmp/tmpjm2wuzwh'

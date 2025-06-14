@@ -1,0 +1,13 @@
+2025-06-14 19:43:41,443 Downloading model artifact...
+Traceback (most recent call last):
+  File "/workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/test_regression_model/run.py", line 45, in <module>
+    go(args)
+  File "/workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/test_regression_model/run.py", line 18, in go
+    model_path = mlflow.artifacts.download_artifacts(artifact_uri=args.mlflow_model)
+  File "/opt/venv/lib/python3.10/site-packages/mlflow/artifacts/__init__.py", line 82, in download_artifacts
+    return _download_artifact_from_uri(artifact_uri, output_path=dst_path)
+  File "/opt/venv/lib/python3.10/site-packages/mlflow/tracking/artifact_utils.py", line 117, in _download_artifact_from_uri
+    return repo.download_artifacts(artifact_path=artifact_path, dst_path=output_path)
+  File "/opt/venv/lib/python3.10/site-packages/mlflow/store/artifact/local_artifact_repo.py", line 91, in download_artifacts
+    raise OSError(f"No such file or directory: '{local_artifact_path}'")
+OSError: No such file or directory: 'model_export:prod'

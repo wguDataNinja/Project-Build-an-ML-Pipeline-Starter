@@ -1,0 +1,114 @@
+[1m=================================================================================================== test session starts ====================================================================================================[0m
+platform linux -- Python 3.10.13, pytest-8.3.2, pluggy-1.5.0 -- /opt/venv/bin/python
+cachedir: .pytest_cache
+rootdir: /workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/check_data
+plugins: anyio-4.6.2.post1, hydra-core-1.3.2
+collected 4 items                                                                                                                                                                                                          [0m[1m
+
+test_data.py::test_column_presence_and_type [31mFAILED[0m
+test_data.py::test_class_names [32mPASSED[0m
+test_data.py::test_column_ranges [32mPASSED[0m
+test_data.py::test_kolmogorov_smirnov [31mFAILED[0m
+
+========================================================================================================= FAILURES =========================================================================================================
+[31m[1m______________________________________________________________________________________________ test_column_presence_and_type _______________________________________________________________________________________________[0m
+
+data =        danceability  energy  key  loudness  mode  speechiness  acousticness  instrumentalness  liveness  valence    te...00    0.3180   0.2600  143.018  audio_features       443077               4        psytrance
+
+[42896 rows x 15 columns]
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_column_presence_and_type[39;49;00m(data):[90m[39;49;00m
+    [90m[39;49;00m
+        [90m# Disregard the reference dataset[39;49;00m[90m[39;49;00m
+        _, data = data[90m[39;49;00m
+    [90m[39;49;00m
+        required_columns = {[90m[39;49;00m
+            [33m"[39;49;00m[33mtime_signature[39;49;00m[33m"[39;49;00m: pd.api.types.is_integer_dtype,[90m[39;49;00m
+            [33m"[39;49;00m[33mkey[39;49;00m[33m"[39;49;00m: pd.api.types.is_integer_dtype,[90m[39;49;00m
+            [33m"[39;49;00m[33mdanceability[39;49;00m[33m"[39;49;00m: pd.api.types.is_float_dtype,[90m[39;49;00m
+            [33m"[39;49;00m[33menergy[39;49;00m[33m"[39;49;00m: pd.api.types.is_float_dtype,[90m[39;49;00m
+            [33m"[39;49;00m[33mloudness[39;49;00m[33m"[39;49;00m: pd.api.types.is_float_dtype,[90m[39;49;00m
+            [33m"[39;49;00m[33mspeechiness[39;49;00m[33m"[39;49;00m: pd.api.types.is_float_dtype,[90m[39;49;00m
+            [33m"[39;49;00m[33macousticness[39;49;00m[33m"[39;49;00m: pd.api.types.is_float_dtype,[90m[39;49;00m
+            [33m"[39;49;00m[33minstrumentalness[39;49;00m[33m"[39;49;00m: pd.api.types.is_float_dtype,[90m[39;49;00m
+            [33m"[39;49;00m[33mliveness[39;49;00m[33m"[39;49;00m: pd.api.types.is_float_dtype,[90m[39;49;00m
+            [33m"[39;49;00m[33mvalence[39;49;00m[33m"[39;49;00m: pd.api.types.is_float_dtype,[90m[39;49;00m
+            [33m"[39;49;00m[33mtempo[39;49;00m[33m"[39;49;00m: pd.api.types.is_float_dtype,[90m[39;49;00m
+            [33m"[39;49;00m[33mduration_ms[39;49;00m[33m"[39;49;00m: pd.api.types.is_integer_dtype,  [90m# This is integer, not float as one might expect[39;49;00m[90m[39;49;00m
+            [33m"[39;49;00m[33mtext_feature[39;49;00m[33m"[39;49;00m: pd.api.types.is_string_dtype,[90m[39;49;00m
+            [33m"[39;49;00m[33mgenre[39;49;00m[33m"[39;49;00m: pd.api.types.is_string_dtype[90m[39;49;00m
+        }[90m[39;49;00m
+    [90m[39;49;00m
+        [90m# Check column presence[39;49;00m[90m[39;49;00m
+>       [94massert[39;49;00m [96mset[39;49;00m(data.columns.values).issuperset([96mset[39;49;00m(required_columns.keys()))[90m[39;49;00m
+[1m[31mE       AssertionError: assert False[0m
+[1m[31mE        +  where False = <built-in method issuperset of set object at 0x7a5fee4ff920>({'acousticness', 'danceability', 'duration_ms', 'energy', 'genre', 'instrumentalness', ...})[0m
+[1m[31mE        +    where <built-in method issuperset of set object at 0x7a5fee4ff920> = {'acousticness', 'danceability', 'duration_ms', 'energy', 'genre', 'instrumentalness', ...}.issuperset[0m
+[1m[31mE        +      where {'acousticness', 'danceability', 'duration_ms', 'energy', 'genre', 'instrumentalness', ...} = set(array(['danceability', 'energy', 'key', 'loudness', 'mode', 'speechiness',\n       'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo',\n       'type', 'duration_ms', 'time_signature', 'genre'], dtype=object))[0m
+[1m[31mE        +        where array(['danceability', 'energy', 'key', 'loudness', 'mode', 'speechiness',\n       'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo',\n       'type', 'duration_ms', 'time_signature', 'genre'], dtype=object) = Index(['danceability', 'energy', 'key', 'loudness', 'mode', 'speechiness',\n       'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo',\n       'type', 'duration_ms', 'time_signature', 'genre'],\n      dtype='object').values[0m
+[1m[31mE        +          where Index(['danceability', 'energy', 'key', 'loudness', 'mode', 'speechiness',\n       'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo',\n       'type', 'duration_ms', 'time_signature', 'genre'],\n      dtype='object') =        danceability  energy  key  loudness  mode  speechiness  acousticness  instrumentalness  liveness  valence    tempo            type  duration_ms  time_signature            genre\n0             0.831   0.814    2    -7.364     1       0.4200      0.059800          0.013400    0.0556   0.3890  156.985  audio_features       124539               4        Dark Trap\n1             0.719   0.493    8    -7.230     1       0.0794      0.401000          0.000000    0.1180   0.1240  115.080  audio_features       224427               4        Dark Trap\n2             0.850   0.893    5       NaN     1       0.0623      0.013800          0.000004    0.3720   0.0391  218.050  audio_features        98821               4        Dark Trap\n3             0.476   0.781    0    -4.710     1       0.1030      0.023700          0.000000    0.1140   0.1750  186.948  audio_features       123661               3        Dark Trap\n4             0.798   0.624    2    -7.668     1       0.2930      0.217000          0.000000    0.1660   0.5910  147.988  audio_features       123298               4        Dark Trap\n...             ...     ...  ...       ...   ...          ...           ...               ...       ...      ...      ...             ...          ...             ...              ...\n42891         0.802   0.630    9    -9.348     0       0.4320      0.204000          0.000002    0.0649   0.8770  144.008  audio_features        66743               4  Underground Rap\n42892         0.565   0.996   11       NaN     0       0.0682      0.000050          0.816000    0.9220   0.0658  145.000  audio_features       590875               4        psytrance\n42893         0.514   0.955    0    -5.182     0       0.0402      0.000053          0.889000    0.3380   0.1100  138.030  audio_features       221007               4           trance\n42894         0.749   0.639    1    -9.841     1       0.1940      0.080900          0.609000    0.3620   0.6490  153.003  audio_features       215202               4  Underground Rap\n42895         0.645   0.980    0    -6.898     1       0.0445      0.000029          0.843000    0.3180   0.2600  143.018  audio_features       443077               4        psytrance\n\n[42896 rows x 15 columns].columns[0m
+[1m[31mE        +    and   {'acousticness', 'danceability', 'duration_ms', 'energy', 'genre', 'instrumentalness', ...} = set(dict_keys(['time_signature', 'key', 'danceability', 'energy', 'loudness', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo', 'duration_ms', 'text_feature', 'genre']))[0m
+[1m[31mE        +      where dict_keys(['time_signature', 'key', 'danceability', 'energy', 'loudness', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo', 'duration_ms', 'text_feature', 'genre']) = <built-in method keys of dict object at 0x7a5fee4ec940>()[0m
+[1m[31mE        +        where <built-in method keys of dict object at 0x7a5fee4ec940> = {'acousticness': <function is_float_dtype at 0x7a6035756a70>, 'danceability': <function is_float_dtype at 0x7a6035756a70>, 'duration_ms': <function is_integer_dtype at 0x7a6035756440>, 'energy': <function is_float_dtype at 0x7a6035756a70>, ...}.keys[0m
+
+[1m[31mtest_data.py[0m:28: AssertionError
+[31m[1m_________________________________________________________________________________________________ test_kolmogorov_smirnov __________________________________________________________________________________________________[0m
+
+data = (       danceability  energy  key  loudness  mode  speechiness  acousticness  instrumentalness  liveness  valence    t...0    0.3180   0.2600  143.018  audio_features       443077               4        psytrance
+
+[42896 rows x 15 columns])
+ks_alpha = 0.05
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_kolmogorov_smirnov[39;49;00m(data, ks_alpha):[90m[39;49;00m
+    [90m[39;49;00m
+        sample1, sample2 = data[90m[39;49;00m
+    [90m[39;49;00m
+        columns = [[90m[39;49;00m
+            [33m"[39;49;00m[33mdanceability[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+            [33m"[39;49;00m[33menergy[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+            [33m"[39;49;00m[33mloudness[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+            [33m"[39;49;00m[33mspeechiness[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+            [33m"[39;49;00m[33macousticness[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+            [33m"[39;49;00m[33minstrumentalness[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+            [33m"[39;49;00m[33mliveness[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+            [33m"[39;49;00m[33mvalence[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+            [33m"[39;49;00m[33mtempo[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+            [33m"[39;49;00m[33mduration_ms[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+        ][90m[39;49;00m
+    [90m[39;49;00m
+        [90m# Bonferroni correction for multiple hypothesis testing[39;49;00m[90m[39;49;00m
+        [90m# (see my blog post on this topic to see where this comes from:[39;49;00m[90m[39;49;00m
+        [90m# https://towardsdatascience.com/precision-and-recall-trade-off-and-multiple-hypothesis-testing-family-wise-error-rate-vs-false-71a85057ca2b)[39;49;00m[90m[39;49;00m
+        alpha_prime = [94m1[39;49;00m - ([94m1[39;49;00m - ks_alpha)**([94m1[39;49;00m / [96mlen[39;49;00m(columns))[90m[39;49;00m
+    [90m[39;49;00m
+        [94mfor[39;49;00m col [95min[39;49;00m columns:[90m[39;49;00m
+    [90m[39;49;00m
+            ts, p_value = scipy.stats.ks_2samp(sample1[col], sample2[col])[90m[39;49;00m
+    [90m[39;49;00m
+            [90m# NOTE: as always, the p-value should be interpreted as the probability of[39;49;00m[90m[39;49;00m
+            [90m# obtaining a test statistic (TS) equal or more extreme that the one we got[39;49;00m[90m[39;49;00m
+            [90m# by chance, when the null hypothesis is true. If this probability is not[39;49;00m[90m[39;49;00m
+            [90m# large enough, this dataset should be looked at carefully, hence we fail[39;49;00m[90m[39;49;00m
+>           [94massert[39;49;00m p_value > alpha_prime[90m[39;49;00m
+[1m[31mE           assert np.float64(nan) > 0.005116196891823743[0m
+
+[1m[31mtest_data.py[0m:120: AssertionError
+[33m===================================================================================================== warnings summary =====================================================================================================[0m
+../../../../../../../opt/venv/lib/python3.10/site-packages/wandb/analytics/sentry.py:258
+../../../../../../../opt/venv/lib/python3.10/site-packages/wandb/analytics/sentry.py:258
+  /opt/venv/lib/python3.10/site-packages/wandb/analytics/sentry.py:258: DeprecationWarning: The `Scope.user` setter is deprecated in favor of `Scope.set_user()`.
+    self.scope.user = {"email": email}
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+[36m[1m================================================================================================= short test summary info ==================================================================================================[0m
+[31mFAILED[0m test_data.py::[1mtest_column_presence_and_type[0m - AssertionError: assert False
+ +  where False = <built-in method issuperset of set object at 0x7a5fee4ff920>({'acousticness', 'danceability', 'duration_ms', 'energy', 'genre', 'instrumentalness', ...})
+ +    where <built-in method issuperset of set object at 0x7a5fee4ff920> = {'acousticness', 'danceability', 'duration_ms', 'energy', 'genre', 'instrumentalness', ...}.issuperset
+ +      where {'acousticness', 'danceability', 'duration_ms', 'energy', 'genre', 'instrumentalness', ...} = set(array(['danceability', 'energy', 'key', 'loudness', 'mode', 'speechiness',\n       'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo',\n       'type', 'duration_ms', 'time_signature', 'genre'], dtype=object))
+ +        where array(['danceability', 'energy', 'key', 'loudness', 'mode', 'speechiness',\n       'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo',\n       'type', 'duration_ms', 'time_signature', 'genre'], dtype=object) = Index(['danceability', 'energy', 'key', 'loudness', 'mode', 'speechiness',\n       'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo',\n       'type', 'duration_ms', 'time_signature', 'genre'],\n      dtype='object').values
+ +          where Index(['danceability', 'energy', 'key', 'loudness', 'mode', 'speechiness',\n       'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo',\n       'type', 'duration_ms', 'time_signature', 'genre'],\n      dtype='object') =        danceability  energy  key  loudness  mode  speechiness  acousticness  instrumentalness  liveness  valence    tempo            type  duration_ms  time_signature            genre\n0             0.831   0.814    2    -7.364     1       0.4200      0.059800          0.013400    0.0556   0.3890  156.985  audio_features       124539               4        Dark Trap\n1             0.719   0.493    8    -7.230     1       0.0794      0.401000          0.000000    0.1180   0.1240  115.080  audio_features       224427               4        Dark Trap\n2             0.850   0.893    5       NaN     1       0.0623      0.013800          0.000004    0.3720   0.0391  218.050  audio_features        98821               4        Dark Trap\n3             0.476   0.781    0    -4.710     1       0.1030      0.023700          0.000000    0.1140   0.1750  186.948  audio_features       123661               3        Dark Trap\n4             0.798   0.624    2    -7.668     1       0.2930      0.217000          0.000000    0.1660   0.5910  147.988  audio_features       123298               4        Dark Trap\n...             ...     ...  ...       ...   ...          ...           ...               ...       ...      ...      ...             ...          ...             ...              ...\n42891         0.802   0.630    9    -9.348     0       0.4320      0.204000          0.000002    0.0649   0.8770  144.008  audio_features        66743               4  Underground Rap\n42892         0.565   0.996   11       NaN     0       0.0682      0.000050          0.816000    0.9220   0.0658  145.000  audio_features       590875               4        psytrance\n42893         0.514   0.955    0    -5.182     0       0.0402      0.000053          0.889000    0.3380   0.1100  138.030  audio_features       221007               4           trance\n42894         0.749   0.639    1    -9.841     1       0.1940      0.080900          0.609000    0.3620   0.6490  153.003  audio_features       215202               4  Underground Rap\n42895         0.645   0.980    0    -6.898     1       0.0445      0.000029          0.843000    0.3180   0.2600  143.018  audio_features       443077               4        psytrance\n\n[42896 rows x 15 columns].columns
+ +    and   {'acousticness', 'danceability', 'duration_ms', 'energy', 'genre', 'instrumentalness', ...} = set(dict_keys(['time_signature', 'key', 'danceability', 'energy', 'loudness', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo', 'duration_ms', 'text_feature', 'genre']))
+ +      where dict_keys(['time_signature', 'key', 'danceability', 'energy', 'loudness', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo', 'duration_ms', 'text_feature', 'genre']) = <built-in method keys of dict object at 0x7a5fee4ec940>()
+ +        where <built-in method keys of dict object at 0x7a5fee4ec940> = {'acousticness': <function is_float_dtype at 0x7a6035756a70>, 'danceability': <function is_float_dtype at 0x7a6035756a70>, 'duration_ms': <function is_integer_dtype at 0x7a6035756440>, 'energy': <function is_float_dtype at 0x7a6035756a70>, ...}.keys
+[31mFAILED[0m test_data.py::[1mtest_kolmogorov_smirnov[0m - assert np.float64(nan) > 0.005116196891823743
+[31m========================================================================================= [31m[1m2 failed[0m, [32m2 passed[0m, [33m2 warnings[0m[31m in 4.29s[0m[31m ==========================================================================================[0m

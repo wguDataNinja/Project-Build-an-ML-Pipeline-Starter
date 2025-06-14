@@ -1,0 +1,14 @@
+artifact_uri: file:///workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/mlruns/0/b6d6584364db4393a98f71ad1cc1d1b1/artifacts
+end_time: 1749930642057
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: b6d6584364db4393a98f71ad1cc1d1b1
+run_name: gregarious-bird-574
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749930623151
+status: 3
+tags: []
+user_id: student

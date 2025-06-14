@@ -1,0 +1,14 @@
+artifact_uri: file:///workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/mlruns/0/2be467146b274f9e934324de3e82e348/artifacts
+end_time: 1749927421250
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 2be467146b274f9e934324de3e82e348
+run_name: smiling-moose-283
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749927404455
+status: 4
+tags: []
+user_id: student

@@ -1,0 +1,14 @@
+artifact_uri: file:///workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/mlruns/0/278a4f496e8041be9c82bde46cec48ec/artifacts
+end_time: 1749889600284
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 278a4f496e8041be9c82bde46cec48ec
+run_name: blushing-owl-614
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749889599888
+status: 4
+tags: []
+user_id: student

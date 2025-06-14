@@ -1,0 +1,35 @@
+2025-06-14 19:45:13,854 Downloading model artifact...
+[34m[1mwandb[0m: [32m[41mERROR[0m artifact 'model_export:prod' not found in 'owensbuddy-wgu/exercise_14'
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.10/site-packages/wandb/apis/normalize.py", line 25, in wrapper
+    return func(*args, **kwargs)
+  File "/opt/venv/lib/python3.10/site-packages/wandb/apis/public/api.py", line 1319, in _artifact
+    artifact = wandb.Artifact._from_name(
+  File "/opt/venv/lib/python3.10/site-packages/wandb/sdk/artifacts/artifact.py", line 331, in _from_name
+    raise ValueError(f"artifact '{name}' not found in '{entity}/{project}'")
+ValueError: artifact 'model_export:prod' not found in 'owensbuddy-wgu/exercise_14'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/test_regression_model/run.py", line 46, in <module>
+    go(args)
+  File "/workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/test_regression_model/run.py", line 18, in go
+    artifact = run.use_artifact(args.mlflow_model)
+  File "/opt/venv/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 391, in wrapper
+    return func(self, *args, **kwargs)
+  File "/opt/venv/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 449, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/opt/venv/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 436, in wrapper
+    return func(self, *args, **kwargs)
+  File "/opt/venv/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 3065, in use_artifact
+    artifact = public_api._artifact(type=type, name=name)
+  File "/opt/venv/lib/python3.10/site-packages/wandb/apis/normalize.py", line 79, in wrapper
+    raise CommError(message, err).with_traceback(sys.exc_info()[2])
+  File "/opt/venv/lib/python3.10/site-packages/wandb/apis/normalize.py", line 25, in wrapper
+    return func(*args, **kwargs)
+  File "/opt/venv/lib/python3.10/site-packages/wandb/apis/public/api.py", line 1319, in _artifact
+    artifact = wandb.Artifact._from_name(
+  File "/opt/venv/lib/python3.10/site-packages/wandb/sdk/artifacts/artifact.py", line 331, in _from_name
+    raise ValueError(f"artifact '{name}' not found in '{entity}/{project}'")
+wandb.errors.errors.CommError: artifact 'model_export:prod' not found in 'owensbuddy-wgu/exercise_14'

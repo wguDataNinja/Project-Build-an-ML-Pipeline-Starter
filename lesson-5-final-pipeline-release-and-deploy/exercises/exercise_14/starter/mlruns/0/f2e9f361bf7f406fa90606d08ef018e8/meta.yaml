@@ -1,0 +1,14 @@
+artifact_uri: file:///workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/mlruns/0/f2e9f361bf7f406fa90606d08ef018e8/artifacts
+end_time: 1749930226042
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: f2e9f361bf7f406fa90606d08ef018e8
+run_name: clean-moth-424
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749930202172
+status: 4
+tags: []
+user_id: student

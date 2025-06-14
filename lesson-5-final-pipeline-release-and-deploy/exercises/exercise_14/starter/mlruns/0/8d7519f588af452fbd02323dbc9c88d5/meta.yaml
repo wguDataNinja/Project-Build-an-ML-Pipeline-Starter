@@ -1,0 +1,14 @@
+artifact_uri: file:///workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/mlruns/0/8d7519f588af452fbd02323dbc9c88d5/artifacts
+end_time: 1749893764289
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 8d7519f588af452fbd02323dbc9c88d5
+run_name: gifted-calf-427
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749893757402
+status: 4
+tags: []
+user_id: student

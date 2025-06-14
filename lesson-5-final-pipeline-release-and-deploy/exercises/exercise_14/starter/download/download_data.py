@@ -5,6 +5,7 @@ import pathlib
 import wandb
 import requests
 import tempfile
+import os
 
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
@@ -16,37 +17,31 @@ def go(args):
     # Derive the base name of the file from the URL
     basename = pathlib.Path(args.file_url).name.split("?")[0].split("#")[0]
 
-    # Download file, streaming so we can download files larger than
-    # the available memory. We use a named temporary file that gets
-    # destroyed at the end of the context, so we don't leave anything
-    # behind and the file gets removed even in case of errors
-    logger.info(f"Downloading {args.file_url} ...")
-    with tempfile.NamedTemporaryFile(mode='wb+') as fp:
+    logger.info("Creating run")
+    with wandb.init(job_type="download_data") as run:
+        # Use run directory to ensure W&B sees file for artifact upload
+        run_dir = run.dir
+        output_file = os.path.join(run_dir, basename)
 
-        logger.info("Creating run")
-        with wandb.init(job_type="download_data") as run:
-            # Download the file streaming and write to open temp file
-            with requests.get(args.file_url, stream=True) as r:
-                for chunk in r.iter_content(chunk_size=8192):
-                    fp.write(chunk)
+        logger.info(f"Downloading {args.file_url} ...")
 
-            # Make sure the file has been written to disk before uploading
-            # to W&B
-            fp.flush()
+        # Download file streaming directly to output_file
+        with requests.get(args.file_url, stream=True) as r, open(output_file, 'wb') as f:
+            for chunk in r.iter_content(chunk_size=8192):
+                f.write(chunk)
 
-            logger.info("Creating artifact")
-            artifact = wandb.Artifact(
-                name=args.artifact_name,
-                type=args.artifact_type,
-                description=args.artifact_description,
-                metadata={'original_url': args.file_url}
-            )
-            artifact.add_file(fp.name, name=basename)
+        logger.info("Creating artifact")
+        artifact = wandb.Artifact(
+            name=args.artifact_name,
+            type=args.artifact_type,
+            description=args.artifact_description,
+            metadata={'original_url': args.file_url}
+        )
+        artifact.add_file(output_file, name=basename)
 
-            logger.info("Logging artifact")
-            run.log_artifact(artifact)
-
-            artifact.wait()
+        logger.info("Logging artifact")
+        run.log_artifact(artifact)
+        artifact.wait()
 
 
 if __name__ == "__main__":

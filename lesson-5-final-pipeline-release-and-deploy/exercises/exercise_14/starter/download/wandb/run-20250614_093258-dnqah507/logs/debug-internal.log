@@ -1,0 +1,16 @@
+{"time":"2025-06-14T09:32:58.789412495Z","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"/workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/download/wandb/run-20250614_093258-dnqah507/logs/debug-core.log"}
+{"time":"2025-06-14T09:32:59.008111085Z","level":"INFO","msg":"stream: created new stream","id":"dnqah507"}
+{"time":"2025-06-14T09:32:59.008142875Z","level":"INFO","msg":"stream: started","id":"dnqah507"}
+{"time":"2025-06-14T09:32:59.008220895Z","level":"INFO","msg":"writer: Do: started","stream_id":"dnqah507"}
+{"time":"2025-06-14T09:32:59.008245525Z","level":"INFO","msg":"handler: started","stream_id":"dnqah507"}
+{"time":"2025-06-14T09:32:59.008300785Z","level":"INFO","msg":"sender: started","stream_id":"dnqah507"}
+{"time":"2025-06-14T09:32:59.139823743Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-06-14T09:33:00.224189674Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-06-14T09:33:00.224256924Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-06-14T09:33:00.548150704Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-06-14T09:33:00.616959678Z","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2025-06-14T09:33:00.619347178Z","level":"INFO","msg":"stream: closing","id":"dnqah507"}
+{"time":"2025-06-14T09:33:00.619374758Z","level":"INFO","msg":"handler: closed","stream_id":"dnqah507"}
+{"time":"2025-06-14T09:33:00.619389148Z","level":"INFO","msg":"writer: Close: closed","stream_id":"dnqah507"}
+{"time":"2025-06-14T09:33:00.619411778Z","level":"INFO","msg":"sender: closed","stream_id":"dnqah507"}
+{"time":"2025-06-14T09:33:00.619482158Z","level":"INFO","msg":"stream: closed","id":"dnqah507"}

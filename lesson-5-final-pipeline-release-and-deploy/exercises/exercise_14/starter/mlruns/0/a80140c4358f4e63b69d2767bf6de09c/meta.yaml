@@ -1,0 +1,14 @@
+artifact_uri: file:///workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/mlruns/0/a80140c4358f4e63b69d2767bf6de09c/artifacts
+end_time: 1749892223494
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: a80140c4358f4e63b69d2767bf6de09c
+run_name: blushing-pig-461
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749892218598
+status: 3
+tags: []
+user_id: student

@@ -1,0 +1,210 @@
+[1m======================================================================== test session starts ========================================================================[0m
+platform linux -- Python 3.10.13, pytest-8.3.2, pluggy-1.5.0 -- /opt/venv/bin/python
+cachedir: .pytest_cache
+rootdir: /workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/check_data
+plugins: anyio-4.6.2.post1, hydra-core-1.3.2
+collected 4 items                                                                                                                                                   [0m[1m
+
+test_data.py::test_column_presence_and_type [31mERROR[0m
+test_data.py::test_class_names [31mERROR[0m
+test_data.py::test_column_ranges [31mERROR[0m
+test_data.py::test_kolmogorov_smirnov [31mERROR[0m
+
+============================================================================== ERRORS ===============================================================================
+[31m[1m__________________________________________________________ ERROR at setup of test_column_presence_and_type __________________________________________________________[0m
+
+request = <SubRequest 'data' for <Function test_column_presence_and_type>>
+
+    [0m[37m@pytest[39;49;00m.fixture(scope=[33m"[39;49;00m[33msession[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92mdata[39;49;00m(request):[90m[39;49;00m
+    [90m[39;49;00m
+        reference_artifact = request.config.option.reference_artifact[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m reference_artifact [95mis[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+            pytest.fail([33m"[39;49;00m[33m--reference_artifact missing on command line[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+        sample_artifact = request.config.option.sample_artifact[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m sample_artifact [95mis[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+            pytest.fail([33m"[39;49;00m[33m--sample_artifact missing on command line[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+        local_path = run.use_artifact(reference_artifact).file()[90m[39;49;00m
+>       sample1 = pd.read_csv(local_path)[90m[39;49;00m
+
+[1m[31mconftest.py[0m:29:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+[1m[31m/opt/venv/lib/python3.10/site-packages/pandas/io/parsers/readers.py[0m:1026: in read_csv
+    [0m[94mreturn[39;49;00m _read(filepath_or_buffer, kwds)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/pandas/io/parsers/readers.py[0m:620: in _read
+    [0mparser = TextFileReader(filepath_or_buffer, **kwds)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/pandas/io/parsers/readers.py[0m:1620: in __init__
+    [0m[96mself[39;49;00m._engine = [96mself[39;49;00m._make_engine(f, [96mself[39;49;00m.engine)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/pandas/io/parsers/readers.py[0m:1898: in _make_engine
+    [0m[94mreturn[39;49;00m mapping[engine](f, **[96mself[39;49;00m.options)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/pandas/io/parsers/c_parser_wrapper.py[0m:93: in __init__
+    [0m[96mself[39;49;00m._reader = parsers.TextReader(src, **kwds)[90m[39;49;00m
+[1m[31mparsers.pyx[0m:574: in pandas._libs.parsers.TextReader.__cinit__
+    [0m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[90m[39;49;00m
+[1m[31mparsers.pyx[0m:663: in pandas._libs.parsers.TextReader._get_header
+    [0m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[90m[39;49;00m
+[1m[31mparsers.pyx[0m:874: in pandas._libs.parsers.TextReader._tokenize_rows
+    [0m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[90m[39;49;00m
+[1m[31mparsers.pyx[0m:891: in pandas._libs.parsers.TextReader._check_tokenize_status
+    [0m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[90m[39;49;00m
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+>   [0m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[90m[39;49;00m
+[1m[31mE   UnicodeDecodeError: 'utf-8' codec can't decode byte 0x90 in position 7: invalid start byte[0m
+
+[1m[31mparsers.pyx[0m:2053: UnicodeDecodeError
+[31m[1m________________________________________________________________ ERROR at setup of test_class_names _________________________________________________________________[0m
+
+request = <SubRequest 'data' for <Function test_column_presence_and_type>>
+
+    [0m[37m@pytest[39;49;00m.fixture(scope=[33m"[39;49;00m[33msession[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92mdata[39;49;00m(request):[90m[39;49;00m
+    [90m[39;49;00m
+        reference_artifact = request.config.option.reference_artifact[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m reference_artifact [95mis[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+            pytest.fail([33m"[39;49;00m[33m--reference_artifact missing on command line[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+        sample_artifact = request.config.option.sample_artifact[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m sample_artifact [95mis[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+            pytest.fail([33m"[39;49;00m[33m--sample_artifact missing on command line[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+        local_path = run.use_artifact(reference_artifact).file()[90m[39;49;00m
+>       sample1 = pd.read_csv(local_path)[90m[39;49;00m
+
+[1m[31mconftest.py[0m:29:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+[1m[31m/opt/venv/lib/python3.10/site-packages/pandas/io/parsers/readers.py[0m:1026: in read_csv
+    [0m[94mreturn[39;49;00m _read(filepath_or_buffer, kwds)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/pandas/io/parsers/readers.py[0m:620: in _read
+    [0mparser = TextFileReader(filepath_or_buffer, **kwds)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/pandas/io/parsers/readers.py[0m:1620: in __init__
+    [0m[96mself[39;49;00m._engine = [96mself[39;49;00m._make_engine(f, [96mself[39;49;00m.engine)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/pandas/io/parsers/readers.py[0m:1898: in _make_engine
+    [0m[94mreturn[39;49;00m mapping[engine](f, **[96mself[39;49;00m.options)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/pandas/io/parsers/c_parser_wrapper.py[0m:93: in __init__
+    [0m[96mself[39;49;00m._reader = parsers.TextReader(src, **kwds)[90m[39;49;00m
+[1m[31mparsers.pyx[0m:574: in pandas._libs.parsers.TextReader.__cinit__
+    [0m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[90m[39;49;00m
+[1m[31mparsers.pyx[0m:663: in pandas._libs.parsers.TextReader._get_header
+    [0m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[90m[39;49;00m
+[1m[31mparsers.pyx[0m:874: in pandas._libs.parsers.TextReader._tokenize_rows
+    [0m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[90m[39;49;00m
+[1m[31mparsers.pyx[0m:891: in pandas._libs.parsers.TextReader._check_tokenize_status
+    [0m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[90m[39;49;00m
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+>   [0m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[90m[39;49;00m
+[1m[31mE   UnicodeDecodeError: 'utf-8' codec can't decode byte 0x90 in position 7: invalid start byte[0m
+
+[1m[31mparsers.pyx[0m:2053: UnicodeDecodeError
+[31m[1m_______________________________________________________________ ERROR at setup of test_column_ranges ________________________________________________________________[0m
+
+request = <SubRequest 'data' for <Function test_column_presence_and_type>>
+
+    [0m[37m@pytest[39;49;00m.fixture(scope=[33m"[39;49;00m[33msession[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92mdata[39;49;00m(request):[90m[39;49;00m
+    [90m[39;49;00m
+        reference_artifact = request.config.option.reference_artifact[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m reference_artifact [95mis[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+            pytest.fail([33m"[39;49;00m[33m--reference_artifact missing on command line[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+        sample_artifact = request.config.option.sample_artifact[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m sample_artifact [95mis[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+            pytest.fail([33m"[39;49;00m[33m--sample_artifact missing on command line[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+        local_path = run.use_artifact(reference_artifact).file()[90m[39;49;00m
+>       sample1 = pd.read_csv(local_path)[90m[39;49;00m
+
+[1m[31mconftest.py[0m:29:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+[1m[31m/opt/venv/lib/python3.10/site-packages/pandas/io/parsers/readers.py[0m:1026: in read_csv
+    [0m[94mreturn[39;49;00m _read(filepath_or_buffer, kwds)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/pandas/io/parsers/readers.py[0m:620: in _read
+    [0mparser = TextFileReader(filepath_or_buffer, **kwds)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/pandas/io/parsers/readers.py[0m:1620: in __init__
+    [0m[96mself[39;49;00m._engine = [96mself[39;49;00m._make_engine(f, [96mself[39;49;00m.engine)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/pandas/io/parsers/readers.py[0m:1898: in _make_engine
+    [0m[94mreturn[39;49;00m mapping[engine](f, **[96mself[39;49;00m.options)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/pandas/io/parsers/c_parser_wrapper.py[0m:93: in __init__
+    [0m[96mself[39;49;00m._reader = parsers.TextReader(src, **kwds)[90m[39;49;00m
+[1m[31mparsers.pyx[0m:574: in pandas._libs.parsers.TextReader.__cinit__
+    [0m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[90m[39;49;00m
+[1m[31mparsers.pyx[0m:663: in pandas._libs.parsers.TextReader._get_header
+    [0m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[90m[39;49;00m
+[1m[31mparsers.pyx[0m:874: in pandas._libs.parsers.TextReader._tokenize_rows
+    [0m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[90m[39;49;00m
+[1m[31mparsers.pyx[0m:891: in pandas._libs.parsers.TextReader._check_tokenize_status
+    [0m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[90m[39;49;00m
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+>   [0m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[90m[39;49;00m
+[1m[31mE   UnicodeDecodeError: 'utf-8' codec can't decode byte 0x90 in position 7: invalid start byte[0m
+
+[1m[31mparsers.pyx[0m:2053: UnicodeDecodeError
+[31m[1m_____________________________________________________________ ERROR at setup of test_kolmogorov_smirnov _____________________________________________________________[0m
+
+request = <SubRequest 'data' for <Function test_column_presence_and_type>>
+
+    [0m[37m@pytest[39;49;00m.fixture(scope=[33m"[39;49;00m[33msession[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92mdata[39;49;00m(request):[90m[39;49;00m
+    [90m[39;49;00m
+        reference_artifact = request.config.option.reference_artifact[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m reference_artifact [95mis[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+            pytest.fail([33m"[39;49;00m[33m--reference_artifact missing on command line[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+        sample_artifact = request.config.option.sample_artifact[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m sample_artifact [95mis[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+            pytest.fail([33m"[39;49;00m[33m--sample_artifact missing on command line[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+        local_path = run.use_artifact(reference_artifact).file()[90m[39;49;00m
+>       sample1 = pd.read_csv(local_path)[90m[39;49;00m
+
+[1m[31mconftest.py[0m:29:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+[1m[31m/opt/venv/lib/python3.10/site-packages/pandas/io/parsers/readers.py[0m:1026: in read_csv
+    [0m[94mreturn[39;49;00m _read(filepath_or_buffer, kwds)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/pandas/io/parsers/readers.py[0m:620: in _read
+    [0mparser = TextFileReader(filepath_or_buffer, **kwds)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/pandas/io/parsers/readers.py[0m:1620: in __init__
+    [0m[96mself[39;49;00m._engine = [96mself[39;49;00m._make_engine(f, [96mself[39;49;00m.engine)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/pandas/io/parsers/readers.py[0m:1898: in _make_engine
+    [0m[94mreturn[39;49;00m mapping[engine](f, **[96mself[39;49;00m.options)[90m[39;49;00m
+[1m[31m/opt/venv/lib/python3.10/site-packages/pandas/io/parsers/c_parser_wrapper.py[0m:93: in __init__
+    [0m[96mself[39;49;00m._reader = parsers.TextReader(src, **kwds)[90m[39;49;00m
+[1m[31mparsers.pyx[0m:574: in pandas._libs.parsers.TextReader.__cinit__
+    [0m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[90m[39;49;00m
+[1m[31mparsers.pyx[0m:663: in pandas._libs.parsers.TextReader._get_header
+    [0m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[90m[39;49;00m
+[1m[31mparsers.pyx[0m:874: in pandas._libs.parsers.TextReader._tokenize_rows
+    [0m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[90m[39;49;00m
+[1m[31mparsers.pyx[0m:891: in pandas._libs.parsers.TextReader._check_tokenize_status
+    [0m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[90m[39;49;00m
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+>   [0m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[04m[91m?[39;49;00m[90m[39;49;00m
+[1m[31mE   UnicodeDecodeError: 'utf-8' codec can't decode byte 0x90 in position 7: invalid start byte[0m
+
+[1m[31mparsers.pyx[0m:2053: UnicodeDecodeError
+[33m========================================================================= warnings summary ==========================================================================[0m
+../../../../../../../opt/venv/lib/python3.10/site-packages/wandb/analytics/sentry.py:258
+../../../../../../../opt/venv/lib/python3.10/site-packages/wandb/analytics/sentry.py:258
+  /opt/venv/lib/python3.10/site-packages/wandb/analytics/sentry.py:258: DeprecationWarning: The `Scope.user` setter is deprecated in favor of `Scope.set_user()`.
+    self.scope.user = {"email": email}
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+[36m[1m====================================================================== short test summary info ======================================================================[0m
+[31mERROR[0m test_data.py::[1mtest_column_presence_and_type[0m - UnicodeDecodeError: 'utf-8' codec can't decode byte 0x90 in position 7: invalid start byte
+[31mERROR[0m test_data.py::[1mtest_class_names[0m - UnicodeDecodeError: 'utf-8' codec can't decode byte 0x90 in position 7: invalid start byte
+[31mERROR[0m test_data.py::[1mtest_column_ranges[0m - UnicodeDecodeError: 'utf-8' codec can't decode byte 0x90 in position 7: invalid start byte
+[31mERROR[0m test_data.py::[1mtest_kolmogorov_smirnov[0m - UnicodeDecodeError: 'utf-8' codec can't decode byte 0x90 in position 7: invalid start byte
+[31m=================================================================== [33m2 warnings[0m, [31m[1m4 errors[0m[31m in 4.19s[0m[31m ===================================================================[0m

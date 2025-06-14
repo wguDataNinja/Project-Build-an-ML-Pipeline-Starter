@@ -1,0 +1,14 @@
+artifact_uri: file:///workspace/nd0821-c2-build-model-workflow-exercises/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/mlruns/0/0501950af7124c3a966c57cfd39ee2e8/artifacts
+end_time: 1749926059141
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 0501950af7124c3a966c57cfd39ee2e8
+run_name: gentle-ape-859
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749926042179
+status: 4
+tags: []
+user_id: student

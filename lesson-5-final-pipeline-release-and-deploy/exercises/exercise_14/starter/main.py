@@ -1,73 +1,121 @@
-import mlflow
+# main.py
+
 import os
 import hydra
 from omegaconf import DictConfig, OmegaConf
+import mlflow
+import copy  
 
+# Make sure WANDB_API_KEY is passed to all subprocesses
+if "WANDB_API_KEY" not in os.environ:
+    os.environ["WANDB_API_KEY"] = "d334422fef54b08f4d719fac8abc2e824eeae389"
 
-# This automatically reads in the configuration
-@hydra.main(config_name='config')
+@hydra.main(config_path=os.path.dirname(__file__), config_name="config", version_base=None)
 def go(config: DictConfig):
+    print(OmegaConf.to_yaml(config)) 
 
-    # Setup the wandb experiment. All runs will be grouped under this name
     os.environ["WANDB_PROJECT"] = config["main"]["project_name"]
     os.environ["WANDB_RUN_GROUP"] = config["main"]["experiment_name"]
 
-    # You can get the path at the root of the MLflow project with this:
     root_path = hydra.utils.get_original_cwd()
-
-    # Check which steps we need to execute
-    if isinstance(config["main"]["execute_steps"], str):
-        # This was passed on the command line as a comma-separated list of steps
-        steps_to_execute = config["main"]["execute_steps"].split(",")
+    steps_to_execute = config["main"]["execute_steps"]
+    if isinstance(steps_to_execute, str):
+        steps_to_execute = steps_to_execute.split(",")
     else:
-        assert isinstance(config["main"]["execute_steps"], list)
-        steps_to_execute = config["main"]["execute_steps"]
+        steps_to_execute = list(steps_to_execute)
 
-    # Download step
     if "download" in steps_to_execute:
+        env_vars = copy.deepcopy(os.environ)
+        env_vars["WANDB_PROJECT"] = config["main"]["project_name"]
+        env_vars["WANDB_RUN_GROUP"] = config["main"]["experiment_name"]
 
         _ = mlflow.run(
             os.path.join(root_path, "download"),
             "main",
             parameters={
                 "file_url": config["data"]["file_url"],
-                "artifact_name": "raw_data.parquet",
-                "artifact_type": "raw_data",
-                "artifact_description": "Data as downloaded"
+                "artifact_name": config["data"]["artifact_name"],
+                "artifact_type": config["data"]["artifact_type"],
+                "artifact_description": config["data"]["artifact_description"]
             },
+            env_manager="local"
+        )
+
+    if "basic_cleaning" in steps_to_execute:
+        _ = mlflow.run(
+            os.path.join(root_path, "basic_cleaning"),
+            "main",
+            parameters={
+                "input_artifact": config["basic_cleaning"]["input_artifact"],
+                "output_artifact": config["basic_cleaning"]["output_artifact"],
+                "output_type": config["basic_cleaning"]["output_type"],
+                "output_description": config["basic_cleaning"]["output_description"],
+            },
+            env_manager="local",
         )
 
     if "preprocess" in steps_to_execute:
-
-        ## YOUR CODE HERE: call the preprocess step
         pass
 
     if "check_data" in steps_to_execute:
-
-        ## YOUR CODE HERE: call the check_data step
-        pass
+        _ = mlflow.run(
+            os.path.join(root_path, "check_data"),
+            "main",
+            parameters={
+                "reference_artifact": config["data"]["reference_dataset"],
+                "sample_artifact": f"{config['main']['project_name']}/{config['basic_cleaning']['output_artifact']}:latest",
+                "ks_alpha": config["data"]["ks_alpha"]
+            },
+            env_manager="local"
+        )
 
     if "segregate" in steps_to_execute:
-
-        ## YOUR CODE HERE: call the segregate step
-        pass
+        _ = mlflow.run(
+            os.path.join(root_path, "segregate"),
+            "main",
+            parameters={
+                "input_artifact": config["segregate"]["input_artifact"],
+                "artifact_root": config["segregate"]["artifact_root"],
+                "artifact_type": config["segregate"]["artifact_type"],
+                "test_size": config["segregate"]["test_size"],
+                "random_state": config["segregate"]["random_state"],
+                "stratify": config["segregate"]["stratify"],
+            },
+            env_manager="local",
+        )
 
     if "random_forest" in steps_to_execute:
-
-        # Serialize decision tree configuration
         model_config = os.path.abspath("random_forest_config.yml")
-
         with open(model_config, "w+") as fp:
             fp.write(OmegaConf.to_yaml(config["random_forest_pipeline"]))
 
-        ## YOUR CODE HERE: call the random_forest step
-        pass
+        _ = mlflow.run(
+            os.path.join(root_path, "random_forest"),
+            "main",
+            parameters={
+                "train_data": config["random_forest"]["train_data"],
+                "model_config": model_config,
+                "export_artifact": config["random_forest"]["export_artifact"],
+                "random_seed": config["random_forest"]["random_seed"],
+                "val_size": config["random_forest"]["val_size"],
+                "stratify": config["random_forest"]["stratify"],
+            },
+            env_manager="local",
+        )
 
     if "evaluate" in steps_to_execute:
-
-        ## YOUR CODE HERE: call the evaluate step
         pass
 
+    if "test_regression_model" in steps_to_execute:
+        _ = mlflow.run(
+            os.path.join(root_path, "test_regression_model"),
+            "main",
+            parameters={
+                "mlflow_model": "model_export:prod",
+                "test_artifact": "trainval_data_test.csv:latest"
+            },
+            env_manager="local",
+        )
 
 if __name__ == "__main__":
     go()
